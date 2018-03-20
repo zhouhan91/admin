@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"> 
+<link rel="stylesheet"  href="css/basic.css"/>
+<title>租房订单管理</title>
+</head>
+<body>
+ 	<div class="ordernav">
+    	<ul class="navul">
+        	<li class="current"><a>最新</a></li>
+            <li><a>处理中</a></li>
+            <li><a>已完成</a></li>             
+        </ul>
+    </div> 
+    <div class="content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr class="tabnav">
+                    <td width="13%">城市</td>
+                    <td width="36%">名称</td>
+                    <td width="17%">入住姓名</td>
+                    <td width="34%">下单时间</td>
+                  </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class='listtabt1'>
+                  <!-- <tr>
+                    <td align="center">巴黎</td>
+                    <td>巴黎夜酒店</td>
+                    <td>张三三</td>
+                    <td>10-23-17 18:12:45</td>
+                  </tr>   -->
+        </table>
+    </div>
+    <div class="content" style="display:none;">
+    	 <div class='soubox'>
+         	<form>
+            	<input class='shuru' type="text" placeholder="请输入姓名"/>
+                <input class='ruzhu' type="text" placeholder="入住人电话"/>
+                <input class='searchcha' type="button" value="查询"/>
+            </form>
+         </div>
+    	 <table width="100%" border="0" cellspacing="0" cellpadding="0">   
+                  <tr class="tabnav">
+                    <td width="13%">城市</td>
+                    <td width="36%">名称</td>
+                    <td width="17%">入住姓名</td>
+                    <td width="34%">下单时间</td>
+                  </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class='listtabt2'>
+                  
+        </table>
+    </div>
+    <div class="content" style="display:none;">
+    	<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+                  <tr class="tabnav">
+                    <td width="13%">城市</td>
+                    <td width="36%">名称</td>
+                    <td width="17%">入住姓名</td>
+                    <td width="34%">下单时间</td>
+                  </tr>
+         </table>
+         <table width="100%" border="0" cellspacing="0" cellpadding="0" class='listtabt3'>
+                  
+        </table>
+    </div>
+</body>
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/basic.js"></script> 
+<script type="text/javascript"> 
+	  
+	$(function(){	
+		$(".searchcha").click(function(){
+			loadlist($('.shuru').val(),$('ruzhu').val(),2); 
+		});  
+		function loadlist(name,phone,status){	
+			var status=status;   
+			var name=name;
+			var phone=phone; 
+			console.log(status); 
+			$.ajax({
+				    url: mainhost+'/community/order/queryCommunityOrderList',   
+				    contentType:"application/json;charset=UTF-8",
+					dataType:"json",
+					type:"post",
+					data:JSON.stringify({"name":name, "phone":phone,"status":status,"pageNum":1}),   
+					success:function(data){
+						 if (data.resultCode == "999999"){
+						var datareult=data.resultData;
+						console.log(data); 
+						$(".listtabt"+status).text('');     
+						for(var prop in datareult){  
+							tempHtml="<tr onclick = \"location.href='orderDetail.html?id="+datareult[prop].id+"'\">"+      
+									  "<td  width='20%' align='center'>"+datareult[prop].cityName+"</td>"+ 
+					                  "<td>"+datareult[prop].communityName+"</td>"+  
+					                  "<td>"+datareult[prop].realName+"</td>"+ 
+					                  "<td>"+datareult[prop].inDate+"</td>"+     
+					                  "</tr>";    
+							$(".listtabt"+status).append(tempHtml);             
+						}  
+					} 						
+					}, 
+					error : function() {  	 
+					        alert("异常！");      
+					} 
+			})   
+		}
+		var name=$('.shuru').val();
+		var phone=$('ruzhu').val();  
+		loadlist(name,phone,1);    
+		var $navli=$('.navul li');
+		var $content=$('.content');
+		$navli.each(function(index,element){
+			$navli[index].onclick=function(){   			
+				loadlist(name,phone,index+1);  
+				for(var i=0;i<$navli.length;i++){
+					$navli[i].className='';
+					$content[i].style.display='none';
+				}
+				$navli[index].className='current';
+				$content[index].style.display='block'; 		 
+			}	 	 
+		})		
+	})	
+</script>
+
+</html>

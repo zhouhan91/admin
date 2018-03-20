@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>店铺管理</title>
+        <link th:href="@{/static/css/bootstrap.min-3.3.6.css}" rel="stylesheet"/>
+        <link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet"/>
+        <link th:href="@{/static/css/style.css}" rel="stylesheet"/>
+        <link th:href="@{/static/css/animate.css}" rel="stylesheet"/>
+        <link th:href="@{/static/css/pager.css}" rel="stylesheet"/>
+
+    </head>
+    <style type="text/css">
+        th,td{
+            text-align: center;
+        }
+    </style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>店铺管理</h5>
+                </div>
+                <div class="ibox-content" style="overflow:hidden;zoom:1;">
+                    <div role="form" class="form-inline" style="float:left">
+                        <div class="form-group">
+                            <label for="queryRestaurantName" class="sr-only" style="width:auto !important;height:100% !important; display:initial;position:inherit;padding:0;margin-left:5px;">店铺名称：</label>
+                            <input id="queryRestaurantName" type="text" placeholder="输入店铺名称查找" class="form-control w_duan" >
+                        </div>
+                        <button class="btn btn-white" type="button" style="margin-bottom:2px;" onclick="">查找</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="footable table table-striped">
+                            <thead>
+                            <tr>
+                                <th width="5%"><input id="all" type="checkbox"> 全选</th>
+                                <th width="10%">店铺名称</th>
+                                <th width="10%">店主电话</th>
+                                <th width="10%">国家</th>
+                                <th width="10%">城市</th>
+                                <th width="20%">详细地址</th>
+                                <th width="15%">申请时间</th>
+                                <th width="20%">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody class="restaurantList">
+                            <tr th:each="restaurant:${page }">
+                                <td><input type="checkbox"  class="i-checks" name="box" th:value="${restaurant.id }"></td>
+                                <td><a href="#"  th:text="${restaurant.name }"></a></td>
+                                <td th:text="${restaurant.phone }"></td>
+                                <td th:text="${restaurant.countryName }"></td>
+                                <td th:text="${restaurant.cityName }"></td>
+                                <td th:text="${restaurant.address }"></td>
+                                <td th:text="${restaurant.createTime}"></td>
+                                <td>
+                                    <button class="btn btn-success"  onclick="auditPass(this)">通过</button>
+                                    <button class="btn btn-danger" onclick="auditDeny(this)">驳回</button>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <ul class="pagination" id="page"></ul>
+                        <div class="pageJump">
+                            <span>跳转到</span><input type="text" id="jumpInput" style="width: 40px;padding: 5px;margin-left: 3px;"/> <span>页</span>
+                            <button type="button" class="button">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+<script th:src="@{/static/js/jquery.min-2.1.4.js}"></script>
+<script th:src="@{/static/js/bootstrap.min-3.3.6.js}"></script>
+<script th:src="@{/static/js/common.js}"></script>
+<script th:src="@{/static/js/pager.js}"></script>
+<script type="text/javascript">
+    /*<![CDATA[*/
+
+    $().ready(function(){
+        Page({
+            num:[[${page.pages}]],
+            startnum:[[${page.pageNum}]],
+            elem:$('#page'),
+            callback:function(n){
+                query(n);
+            }
+        });
+        $(".jumpBtn").on("click", function(){query($("#jumpInput").val())});
+    });
+
+    function query(page){
+        location.href="[[@{/catering/restaurant/reviewList/}]]"+page;
+    }
+
+    function auditPass(e) {
+        var restaurantId = $(e).parent().siblings(":first").children("input").val();
+        console.log(restaurantId);
+        if(confirm("是否确定通过审核？")) {
+            $.get("[[@{/catering/restaurant/auditPass/}]]" + restaurantId, function (data) {
+                if (data.resultCode == "999999") {
+                    alert("操作成功！");
+                    location.reload();
+                } else {
+                    alert("操作失败！");
+                    location.reload();
+                }
+            })
+        }else {
+            return false;
+        }
+    }
+
+    function auditDeny(e){
+        var restaurantId = $(e).parent().siblings(":first").children("input").val();
+        console.log(restaurantId);
+        if(confirm("是否确认驳回请求？")) {
+            $.get("[[@{/catering/restaurant/auditDeny/}]]" + restaurantId, function (data) {
+                if (data.resultCode == "999999") {
+                    alert("操作成功！");
+                    location.reload();
+                } else {
+                    alert("操作失败！");
+                    location.reload();
+                }
+            })
+        }else {
+            return false;
+        }
+    }
+
+
+    /*]]>*/
+</script>
+</html>

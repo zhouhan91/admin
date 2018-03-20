@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"> 
+<link rel="stylesheet"  href="css/basic.css"/>
+<title>登录</title>
+
+</head>
+<body>
+	<div class="loginbox">
+ 	<form action="" id="formId" method="post">   
+    	<div class='logintext'>
+        	<input type="text" placeholder="请输入手机号码" name="phone" class='mobile'/>
+        </div>
+        <div class='logintext logintext2'>
+        	<input type="password" placeholder="请输入密码" name="password" class='password'/>
+        </div>
+        <div class='loginbut'>
+        	<input type="button" value="立即登陆" onclick="checklogin()"/>       
+        </div>
+    </form>
+    <div>
+    <div class="vaguealert">
+			<p></p>
+	</div>  
+</body>
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/basic.js"></script>
+<script type="text/javascript">
+		function checklogin(){		
+			    
+			var mobile = $('.mobile').val();
+			var password = $('.password').val();
+			var checkPhone=/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;//验证手机号格式
+			if(mobile == null || mobile == ""){
+				  showvaguealert('请输入手机号码');
+				  return ;  
+			}
+			if(!checkPhone.test(mobile)){ 
+				 showvaguealert('请输入输入正确的手机号码');
+				 return ;
+			}
+			if(password == '' || password.length==0||password==null){
+				   showvaguealert('请输入密码');
+				   return ;
+			 }
+			 if(!(password.length>=6&&password.length<=16)){
+				   showvaguealert('密码长度只能在6到16之间');
+				   return ; 
+			 } 
+  
+			$.ajax({ 			   		
+				   url: mainhost+'/sysUser/doLogin',   
+				   contentType:"application/json;charset=UTF-8",
+					dataType:"json",
+					type:"post",
+					data:JSON.stringify({"phone":mobile, "password":password}),  
+				   success:function(data) { 
+					   console.log(data);      
+					   if (data.resultCode == "999999"){  
+						   location.href ='orderlist.html';   
+						   
+					   }else{
+						   showvaguealert(data.resultDesc);  
+					   }			  					  
+				   }, 
+				   error : function() {  	 
+				          alert("异常！");      
+				   } 
+			})
+			
+		}
+</script>
+</html>

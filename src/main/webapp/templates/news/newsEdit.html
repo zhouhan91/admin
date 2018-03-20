@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>编辑新闻</title>
+<link th:href="@{/static/css/bootstrap.min-3.3.6.css}" rel="stylesheet" />
+<link th:href="@{/static/css/footable.core.css}" rel="stylesheet" />
+<link th:href="@{/static/css/animate.css}" rel="stylesheet" />
+<link th:href="@{/static/css/style.css}" rel="stylesheet" />
+<link th:href="@{/static/css/bootstrap-datetimepicker.css}" rel="stylesheet" />
+<link th:href="@{/static/css/news/news.css}" rel="stylesheet" />
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>头条列表</h5>
+					</div>
+					<div class="ibox-content" style="overflow: hidden; zoom: 1;">
+						<input type="hidden" id="newsId" th:value="${news.id}" /> <a th:href="@{/news/list/1}"><button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;">返回</button></a>
+						<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="putOffLine()">下架</button>
+						<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="putOnLine()">上架</button>
+						<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="save();">保存</button>
+					</div>
+					<div class="group">
+						<div role="form" class="form-inline tr">
+							<div class="form-group tr">
+								<input type="hidden" id="coverPicture" th:value="${news.coverPicture}" /> <label class="sr-only title" for="title" style="margin-right: 25px;">封面图：</label><img onclick="chooseFile('newsCover');" id="coverPictureImg" style="width: 150px; border: 1px solid; cursor: pointer;" th:src="${#strings.isEmpty(news.coverPicture)}?@{/static/images/jiahao.png}:@{${news.coverPicture}}">
+							</div>
+						</div>
+						<div role="form" class="form-inline tr">
+							<div class="form-group tr">
+								<label class="sr-only title" for="title" style="margin-right: 25px;">标题：</label><input id="title" th:value="${news.title}" type="text" class="form-control" placeholder="请输入标题" maxlength="30" style="width: 80%;" />
+							</div>
+						</div>
+						<div role="form" class="form-inline tr">
+							<div class="form-group tr">
+								<label class="sr-only title" for="summary" style="margin-right: 25px;">内容摘要：</label><input id="summary" th:value="${news.summary}" type="text" class="form-control" placeholder="请输入摘要" style="width: 80%;" />
+							</div>
+						</div>
+						<div role="form" class="form-inline tr">
+							<div class="form-group td">
+								<label class="sr-only title" for="author">来源/作者：</label><input id="author" th:value="${news.author}" type="text" class="form-control" placeholder="请输入作者/来源" style="width: 80%;" />
+							</div>
+							<div class="form-group td">
+								<label class="sr-only title" for="keyWords">关键词：</label><input id="author" th:value="${news.author}" type="text" class="form-control" placeholder="请输入关键词，半角逗号分隔" style="width: 80%;" />
+							</div>
+						</div>
+						<div role="form" class="form-inline tr">
+							<div class="form-group td">
+								<label class="sr-only title" for="navigationCode">分类：</label><select id="navigationCode" class="form-control" onchange="loadSubNavigation($('#navigationCode').val(), $('#subNavigationCode'), '${news.subNavigationCode}');"><option th:each="navigation:${lstNavigation}" th:value="${navigation.code}" th:text="${navigation.name}" th:selected="${news.navigationCode == navigation.code}">民居</option>
+								</select>
+							</div>
+							<div class="form-group td">
+								<label class="sr-only title" for="subNavigationCode">子类：</label><select id="subNavigationCode" class="form-control"></select>
+							</div>
+							<div class="form-group td">
+								<label class="sr-only title modalContentLabel" for="publishTime">发布时间：</label><input class="form-control modalContentInput" type="text" id="publishTime" readonly="readonly" th:value="${news.publishTime}?${#temporals.format(news.publishTime, 'yyyy-MM-dd HH:mm:ss')}:''" />
+							</div>
+						</div>
+						<div role="form" class="form-inline tr">
+							<div class="form-group td">
+								<label class="sr-only title" for="readCount">阅读数：</label><input id="readCount" th:value="${news.readCount}" type="text" class="form-control" placeholder="请输入阅读数" style="width: 80%;" />
+							</div>
+							<div class="form-group td">
+								<label class="sr-only title" for="likeCount">点赞数：</label><input id="likeCount" th:value="${news.likeCount}" type="text" class="form-control" placeholder="请输入点赞数" style="width: 80%;" />
+							</div>
+							<div class="form-group td">
+								<label class="sr-only title" for="markCount">收藏数：</label><input id="markCount" th:value="${news.markCount}" type="text" class="form-control" placeholder="请输入收藏数" style="width: 80%;" />
+							</div>
+						</div>
+						<div role="form" class="form-inline tr">
+							<div id="editor" th:utext="${newsContent.content}"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- 文件上传框框 -->
+	<div style="display: none;">
+		<form id="fileUploadForm" name="fileUploadForm" target="fileUploadFrame" method="post" enctype="multipart/form-data">
+			<input type="file" name="file" id="fileUploadBtn" accept="image/*" onchange="upload();"> <input type="hidden" id="busiCode" name="busiCode" value="">
+		</form>
+		<iframe name="fileUploadFrame" id="fileUploadFrame"></iframe>
+	</div>
+</body>
+
+
+<script th:src="@{/static/js/jquery.min-2.1.4.js}"></script>
+<script th:src="@{/static/js/bootstrap.min-3.3.6.js}"></script>
+<script th:src="@{/static/js/footable.all.min.js}"></script>
+<script th:src="@{/static/js/jquery.form.min.js}"></script>
+<script th:src="@{/static/js/common.js}"></script>
+<script th:src="@{/static/js/json2.js}"></script>
+<script th:src="@{/static/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/static/js/bootstrap-datetimepicker.zh-CN.js}"></script>
+<script th:src="@{/static/js/news/news.js}"></script>
+<script th:src="@{/static/js/wangEditor.min.js}"></script>
+<script type="text/javascript">
+	/*<![CDATA[*/
+	var E;
+	var editor;
+	$().ready(function() {
+		// 初始化日期输入框
+		initTimeInput();
+		// 加载子栏目
+		loadSubNavigation($("#navigationCode").val(), $("#subNavigationCode"), "[[${news.subNavigationCode}]]");
+		// 加载富文本编辑框
+		E = window.wangEditor;
+		editor = new E('#editor');
+		editor.customConfig.uploadFileName = 'file';
+		editor.customConfig.uploadImgMaxSize = 5 * 1024 * 1024;
+		editor.customConfig.uploadImgMaxLength = 1;
+		editor.customConfig.uploadImgTimeout = 15000
+		editor.customConfig.uploadImgServer = "[[@{/components/fileUploadEditor?busiCode=editor}]]";
+		editor.create();
+
+		editor.customConfig.uploadImgHooks = {
+			fail : function(xhr, editor, result) {
+				alert(result.resultDesc);
+			}
+		}
+	});
+
+	/*]]>*/
+</script>
+</html>

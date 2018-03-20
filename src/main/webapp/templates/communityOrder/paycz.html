@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"> 
+<link rel="stylesheet"  href="css/basic.css"/>
+<title>支付操作</title>
+</head>
+<body>
+	<div class='zhifubox'>
+    	 	<div class='zfboxtop' id='zfboxtop'>
+    	 		<span>线下支付方式</span>
+    	 		<p class='paytype'>现金</p>
+    	 	</div>
+    	 	<div class='zfboxtop' style="background-image:none;">  
+    	 		<span>线下支付金额</span>
+    	 		<input class='money' type="text" placeholder="请输入金额"/>   
+    	 	</div>
+    	 	<div class='zfboxtop' id='zfboxtops'>
+    	 		<span>线下支付用途</span> 
+    	 		<p class='xxpay'>押金</p> 
+    	 	</div>
+    	 	<div>
+    	 		<input type="button" value='确定' class='lishibut'/> 
+    	 	</div>
+	</div>
+    <div class="content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr class="tabnav">
+                    <td width="25%" align="center">操作人</td> 
+                    <td width="20%" align="center">操作记录</td>
+                    <td width="20%" align="center">用途</td>
+                    <td width="35%" align="center">时间</td>  
+                  </tr>
+         </table>
+         <table width="100%" border="0" cellspacing="0" cellpadding="0" class='listtabt'>
+    
+        </table>
+    </div>
+    <div class='bghei'>
+  	
+    </div>
+    	<div class='bottombox'> 
+    		<ul class='paybtlist'>
+ 
+    		</ul>
+    	</div>
+    <div class="vaguealert">
+			<p></p>
+	</div>  
+</body>
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/basic.js"></script> 
+<script>
+$(function(){  
+	//新增支付明细
+	$('.lishibut').click(function(){
+		var money=$('.money').val();
+		var paytype=$('.paytype').text();
+		var xxpay=$('.xxpay').text();  
+		if(money==''){
+		  showvaguealert('请输入支付金额'); 
+		  return ;  
+		}
+		$.ajax({
+			url: mainhost+'/community/offLinePay/saveOrderOfflinePay',   
+			contentType:"application/json;charset=UTF-8",
+			dataType:"json",
+			type:"post",
+			data:JSON.stringify({"orderId":orderId, "amount":money,"purpose":xxpay,"payType":paytype}), 
+			success:function(data){
+				console.log(data);
+				if (data.resultCode == "999999"){ 					
+			/* 		tempHtml="<tr>"+      
+					  "<td  width='20%' align='center'>"+data.resultData.payType+"</td>"+ 
+	                  "<td>"+data.resultData.amount+"</td>"+  
+	                  "<td>"+data.resultData.purpose+"</td>"+  
+	                  "<td>"+data.resultData.createTime+"</td>"+       
+	                  "</tr>";     
+					  $(".listtabt").html(tempHtml); */           
+					  location.href ='orderDetail.html?id='+orderId;       
+				} 
+			},  
+			 error:function(){   	 
+			      alert("异常！");      
+			} 
+		})
+	})  
+	//选择支付方式
+	$('#zfboxtop').click(function(){
+		$('.bghei').show(); 
+		$('.bottombox').show();   
+		$(".paybtlist").text(''); 
+		paytype="<li class='zffs'>"+"现金"+"</li>"+"<li class='zffs'>"+"微信转账"+"</li>"+"<li class='zffs'>"+"银行卡"+"</li>";
+		$(".paybtlist").append(paytype);
+		$('.zffs').click(function(){
+			$('.bghei').hide(); 
+			$('.bottombox').hide();  
+			$('.paytype').text($(this).text());     
+		})  
+	})     
+	//选择用途
+	$('#zfboxtops').click(function(){
+		$('.bghei').show(); 
+		$('.bottombox').show();   
+		$(".paybtlist").text(''); 
+		paytype="<li class='zffss'>"+"押金"+"</li>"+"<li class='zffss'>"+"房租"+"</li>";
+		$(".paybtlist").append(paytype);
+		$('.zffss').click(function(){
+			$('.bghei').hide(); 
+			$('.bottombox').hide();    
+			$('.xxpay').text($(this).text());     
+		})  
+	})
+	$('.bghei').click(function(){ 
+		$('.bghei').hide(); 
+		$('.bottombox').hide();  
+	})
+	//初始化数据获得订单ID
+	function GetQueryString(name) {
+	   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+	   var r = window.location.search.substr(1).match(reg);
+	   if (r!=null) return (r[2]); return null;
+	}
+	var orderId=GetQueryString("id");
+	$.ajax({
+		url: mainhost+'/community/offLinePay/queryOrderOfflinePayList/'+orderId,        
+	    contentType:"application/json;charset=UTF-8",
+		type:"get",           
+	    success:function(data){
+	    	if (data.resultCode == "999999"){	    		
+	    		var datareult=data.resultData;
+	    		console.log(data);     
+	    		for(var prop in datareult){  
+					tempHtml="<tr>"+      
+							  "<td  width='25%' align='center'>"+datareult[prop].payType+"</td>"+ 
+			                  "<td  width='20%' align='center'>"+datareult[prop].amount+"</td>"+   
+			                  "<td  width='20%' align='center'>"+datareult[prop].purpose+"</td>"+   
+			                  "<td  width='35%' align='center'>"+datareult[prop].createTime+"</td>"+     
+			                  "</tr>";    
+					$(".listtabt").append(tempHtml);             
+				} 
+	    	} 		     	
+	    }, 
+		 error:function(){   	 
+		      alert("异常！");      
+		} 
+	})
+})
+</script>
+
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"> 
+<link rel="stylesheet"  href="css/basic.css"/>
+<style>
+	.row {
+    float:right;
+    display: block;
+    line-height: 60px;
+    text-align: center;
+ 
+}
+input[type="checkbox"] { 
+    display: none;
+}
+input[type="checkbox"] + label {
+    display: inline-block;
+    width:0.9rem; 
+    height:0.5rem; 
+    position: relative;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    margin: 7px 0px; 
+    box-sizing: border-box; 
+}
+input[type="checkbox"] + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 0px;  
+    width: 0.45rem;
+    height: 0.45rem;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    cursor: pointer;
+	border:0.01rem solid #ccc;  
+}
+#simple_1:checked + label.red,
+#simple_2:checked + label.red,
+#simple_3:checked + label.red,
+#simple_4:checked + label.red,
+#simple_5:checked + label.red {
+    background: #ffac40;
+}
+#simple_1:checked + label.red:after,
+#simple_2:checked + label.red:after,
+#simple_3:checked + label.red:after,
+#simple_4:checked + label.red:after,
+#simple_5:checked + label.red:after {
+    background: #fff; 
+}
+#simple_1:checked + label.green,
+#simple_2:checked + label.green,
+#simple_3:checked + label.green,
+#simple_4:checked + label.green,
+#simple_5:checked + label.green {
+    background: #AEDCAE;
+}
+#simple_1:checked + label.green:after,
+#simple_2:checked + label.green:after,
+#simple_3:checked + label.green:after,
+#simple_4:checked + label.green:after,
+#simple_5:checked + label.green:after {
+    background: #5CB85C; 
+}
+#simple_1:checked + label:after,
+#simple_2:checked + label:after,
+#simple_3:checked + label:after,
+#simple_4:checked + label:after,
+#simple_5:checked + label:after {
+    left: calc(100% - 25px);
+}
+#simple_1 + label,
+#simple_2 + label,
+#simple_3 + label,
+#simple_4 + label,
+#simple_5 + label {
+    background: #fff;
+    border-radius: 1rem;
+	border:0.01rem solid #ccc;
+}
+#simple_1 + label:after,
+#simple_2 + label:after,
+#simple_3 + label:after,
+#simple_4 + label:after,
+#simple_5 + label:after {
+    background: #fff;
+    border-radius: 50%;
+   
+}
+</style>
+<title>租房订单详情</title>
+</head>
+<body style="background:#f7f7f7;padding-bottom:0.8rem;">
+ 	 <div class='ddbititle'>
+     	入住人信息
+     </div>
+     <div class='ruzhubox'>
+     <div class='basiclistct'>
+     	<span>真实姓名</span>
+        <p class='realName'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>联系电话</span>
+        <p class='phone'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>城市</span>
+        <p class='cityId'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>下单时间</span>
+        <p class='createTime'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>房屋名称</span>
+        <p class='communityName'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>房型</span>
+        <p class='roomType'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>床型</span>
+        <p class='roombed'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>入住时间</span>
+        <p class='inDate'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>退房时间</span>
+        <p class='outdate'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>租期</span>
+        <p class='leaseModel'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>入住时间</span>
+        <p class='inDays'></p>   
+     </div>
+     <div class='basiclistct'>
+     	<span>email</span>
+        <p class='email'></p>
+     </div>
+     </div>
+     <div class='ddbititle'>
+     	供应商信息
+     </div>
+     <div class='ruzhubox'>
+     <div class='basiclistct'>
+     	<span>供应商</span>
+        <p class='supplier'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>联系电话</span>
+        <p class='supplierphone'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>联系人</span>
+        <p class='contacts'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>微信号</span>
+        <p class='wechat'></p>
+     </div>
+     <div class='basiclistct'>
+     	<span>EMAIL</span>
+        <p class='supplieremail'></p>
+     </div>
+     </div>
+      <div class='ddbititle'>
+     	订单操作信息 
+     </div>
+     <div class='ruzhubox'>
+     <div class='basiclistct'>
+     	<span>是否确认房</span>
+       <div class="row">
+   		 <input type="checkbox" id="simple_1">
+   		 <label for="simple_1" class="red"></label>
+		</div>
+     </div>
+     <div class='basiclistct'>
+     	<span>是否出合同</span>
+       <div class="row">
+   		 <input type="checkbox" id="simple_2">
+   		 <label for="simple_2" class="red"></label>
+		</div>
+     </div>
+     <div class='basiclistct'>
+     	<span>是否签合同</span>
+       <div class="row">
+   		 <input type="checkbox" id="simple_3">
+   		 <label for="simple_3" class="red"></label>
+	   </div>
+     </div>
+     <div class='basiclistct'>
+     	<span>是否关房</span> 
+       <div class="row">
+   		 <input type="checkbox" id="simple_4">
+   		 <label for="simple_4" class="red"></label>
+	   </div>
+     </div>
+     <div class='basiclistct'>
+     	<span>是否完成</span>
+       <div class="row">
+   		 <input type="checkbox" id="simple_5">
+   		 <label for="simple_5" class="red"></label>
+	   </div>
+     </div>   
+     </div>
+     <div class='caozuobox'>
+     	<a class='zhifu'>支付操作</a>
+        <!-- <a>历史操作</a> --> 
+     </div>
+    <div class='orderbotbox'>
+    	<a class='cancelorder'>取消订单</a>
+        <a href='orderlist.html'>关闭</a> 
+        <a style="background:#ffac40;color:#fff;" class='Preservation'>保存</a>
+    </div>
+</body>
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/basic.js"></script> 
+<script>
+$(function(){ 
+	//支付操作
+	$('.zhifu').click(function(){
+		location.href ='paycz.html?id='+orderId;           
+	})
+	//取消订单	
+	 $('.cancelorder').click(function(){
+		 $.ajax({
+			   url: mainhost+'/community/order/cancelOrder/'+orderId,        
+			    contentType:"application/json;charset=UTF-8",
+				type:"post",        
+			    success:function(data){
+			    	if (data.resultCode == "999999"){
+			    		console.log(data); 
+			    	} 		    	
+			    }, 
+				 error:function(){   	 
+				      alert("异常！");      
+				} 
+		 }) 
+ 	}) 
+ 	
+  //初始化数据
+	function GetQueryString(name) {
+	   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+	   var r = window.location.search.substr(1).match(reg);
+	   if (r!=null) return (r[2]); return null;
+	}
+	var orderId=GetQueryString("id"); 
+	$.ajax({
+		 url: mainhost+'/community/order/readCommunityOrderInfo/'+orderId,         
+		 contentType:"application/json;charset=UTF-8",  
+		 type:"get",
+		 success:function(data){
+			 if (data.resultCode == "999999"){
+				 console.log(data);  
+				var resultData=data.resultData;         
+				$('.realName').text(resultData.realName); 
+				$('.phone').text(resultData.phone);
+				$('.cityId').text(resultData.cityId);
+			  	$('.createTime').text(resultData.createTime);
+			  	$('.communityName').text(resultData.communityName);
+			  	$('.roomType').text(resultData.roomType);
+			  	$('.roombed').text(resultData.room.bedType); 
+			  	$('.inDate').text(resultData.inDate);  
+			  	$('.outdate').text(resultData.outDate);
+			  	$('.email').text(resultData.email);
+			  	$('.leaseModel').text(resultData.community.leaseModel);  
+			  	$('.supplier').text(resultData.supplier.name);
+			  	$('.supplierphone').text(resultData.supplier.phone);
+			  	$('.contacts').text(resultData.supplier.contacts); 
+			  	$('.wechat').text(resultData.supplier.wechat);
+			  	$('.supplieremail').text(resultData.supplier.email);
+			  	$('.inDays').text(resultData.inDays); 
+			 };  
+			 //非空判断
+			 $('.basiclistct p').each(function(i){
+				if($(this).text()==''){
+					$(this).text('暂无');   
+				} 
+			 }) 
+			 
+			 //是否确认房
+			 var confirmFlag=resultData.confirmFlag;
+			 if(confirmFlag==null){ 
+				 confirmFlag='N';
+			 }		 
+			 if(confirmFlag=='Y'){    
+				 $('#simple_1').attr("checked", true);  
+				 $('#simple_1').attr("disabled","disabled"); 
+			 }  
+			 $('#simple_1').click(function(){
+				    if(confirmFlag=='N'){
+				    	confirmFlag='Y'; 
+				 //   	$(this).attr("disabled","disabled"); 
+				    }else if(confirmFlag=='Y'){     
+				    	confirmFlag='N'; 
+				    	$('#simple_1').attr("checked", false); 
+				    }   
+				    console.log(confirmFlag);
+				    console.log(printContractFlag); 
+					console.log(signContractFlag);
+	 
+			 })  
+			 //是否已出合同 
+			 var printContractFlag=resultData.printContractFlag;
+			 if(printContractFlag==null){ 
+				 printContractFlag='N';
+			 }		 
+			 if(printContractFlag=='Y'){  
+				 $('#simple_2').attr("checked", true); 
+				 $('#simple_2').attr("disabled","disabled"); 
+			 }  
+			 $('#simple_2').click(function(){
+				    if(printContractFlag=='N'){
+				    	printContractFlag='Y';
+				 //   	$(this).attr("disabled","disabled"); 
+				    }else if(printContractFlag=='Y'){     
+				    	printContractFlag='N'; 
+				    	$('#simple_2').attr("checked", false); 
+				    }
+				    console.log(confirmFlag);
+				    console.log(printContractFlag); 
+					console.log(signContractFlag);
+		
+			 })  
+			 //是否已签合同
+			 var signContractFlag=resultData.signContractFlag;
+			 if(signContractFlag==null){ 
+				 signContractFlag='N';
+			 }		 
+			 if(signContractFlag=='Y'){     
+				 $('#simple_3').attr("checked", true);   
+				// $('#simple_3').attr("disabled","disabled"); 
+			 }  
+			 $('#simple_3').click(function(){
+				    if(signContractFlag=='N'){
+				    	signContractFlag='Y';
+				    	$(this).attr("disabled","disabled"); 
+				    }else if(signContractFlag=='Y'){     
+				    	signContractFlag='N'; 
+				    	$('#simple_3').attr("checked", false);  
+				    }
+				    console.log(confirmFlag);
+				    console.log(printContractFlag); 
+					console.log(signContractFlag);
+	
+			 })   
+			  //是否已关房
+			 var closeFlag=resultData.room.status;
+			 if(closeFlag==20){ 
+				 closeFlag='N';
+			 }else if(closeFlag==30){    
+				 closeFlag='Y'; 
+			 }		  
+			 if(closeFlag=='Y'){     
+				 $('#simple_4').attr("checked", true);  
+			   	 $('#simple_4').attr("disabled","disabled");
+			 }    
+			 $('#simple_4').click(function(){
+				    if(closeFlag=='N'){
+				    	closeFlag='Y';
+				//    	$(this).attr("disabled","disabled"); 
+				    }else if(closeFlag=='Y'){     
+				    	closeFlag='N'; 
+				    	$('#simple_4').attr("checked", false);  
+				    }  
+				    console.log(confirmFlag);
+				    console.log(printContractFlag); 
+					console.log(signContractFlag);
+					console.log(closeFlag);    
+			 })   
+			 //是否已完成
+			 var completeFlag=resultData.completeFlag;
+			 if(completeFlag==null){ 
+				 completeFlag='N';
+			 }		   
+			 if(completeFlag=='Y'){       
+				 $('#simple_5').attr("checked", true);   
+				 $('#simple_5').attr("disabled","disabled");  
+			 }    
+			 $('#simple_5').click(function(){
+				    if(completeFlag=='N'){
+				    	completeFlag='Y'; 
+				//    	$(this).attr("disabled","disabled"); 
+				    }else if(completeFlag=='Y'){     
+				    	completeFlag='N';  
+				    } 
+			 })    
+			 //保存 
+
+			 	$('.Preservation').click(function(){
+			 		$.ajax({
+			 			 url: mainhost+'/community/order/saveCommunityOrder',   
+						    contentType:"application/json;charset=UTF-8",
+							dataType:"json",   
+							type:"post",       
+							data:JSON.stringify({"id":orderId,"confirmFlag":confirmFlag,"printContractFlag":printContractFlag,"signContractFlag":signContractFlag,"completeFlag":confirmFlag,"closeFlag":'N'}),   
+							success:function(data){
+								location.href ='orderlist.html'; 
+							}, 
+							error:function(){   	 
+							      alert("异常！");      
+							}  
+			 		}) 
+			 	}) 
+		 },  
+		 error:function(){   	 
+		      alert("异常！");      
+		} 
+	})      
+})
+</script>
+
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>编辑房源</title>
+	<link th:href="@{/static/css/bootstrap.min-3.3.6.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/footable.core.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/animate.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/style.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/bootstrap-datetimepicker.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/toastr.min.css}" rel="stylesheet" />
+	<style type="text/css">
+		th,td{
+			text-align: center;
+		}
+	</style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>订单详情</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="table-responsive">
+						<table class="footable table table-striped">
+							<thead>
+							<tr>
+								<th style="display: none" width="15%">订单ID</th>
+								<th width="5%">订单状态</th>
+								<th width="10%">用户地址</th>
+								<th width="10%">商家推荐地址</th>
+								<th width="10%">下单时间</th>
+								<th width="10%">配送菜品</th>
+								<th width="10%">配送人员</th>
+								<th width="10%">收货人信息</th>
+								<th width="5%">订单金额</th>
+								<th width="10%">支付状态</th>
+								<th width="10%">备注信息</th>
+								<th width="10%" th:if="(${cateringOrder.status} != 60 and ${cateringOrder.status} != 70 and ${cateringOrder.status} != 80)">操作</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td id="orderId" style="display: none" th:text="${cateringOrder.id }"></td>
+								<td th:switch="${cateringOrder.status }">
+									<span th:case="10">新建</span>
+									<span th:case="30">待确认</span>
+									<span th:case="50">待配送</span>
+									<span th:case="60">待结算</span>
+									<span th:case="70">已完成</span>
+									<span th:case="80">已取消</span>
+								</td>
+								<td th:text="${cateringOrder.address }"></td>
+								<td th:text="${cateringOrder.distributionLocation }"></td>
+								<td th:text="${cateringOrder.createTime }"></td>
+								<td>
+									<div th:each="detail:${cateringOrder.lstDetail}">
+										<p th:text="${detail.goodsName}+'x'+${detail.count}"></p>
+									</div>
+								</td>
+								<td>
+									<p th:text="${cateringOrder.courierName }"></p>
+									<p th:text="${cateringOrder.courierPhone }"></p>
+								</td>
+								<td>
+									<p th:text="${cateringOrder.name }"></p>
+									<p th:text="${cateringOrder.phone }"></p>
+								</td>
+								<td th:text="${cateringOrder.cashAmount }"></td>
+								<td th:switch="${cateringOrder.payStatus }">
+									<span th:case="1">未支付</span>
+									<span th:case="2">支付中</span>
+									<span th:case="3">已支付</span>
+									<span th:case="4">支付失败</span>
+								</td>
+								<td th:text="${cateringOrder.remark }"> </td>
+								<td th:if="(${cateringOrder.status} != 60 and ${cateringOrder.status} != 70 and ${cateringOrder.status} != 80)">
+									<button class="btn btn-primary" data-toggle="modal" data-target="#selectCourierModal">选择配送人员</button><br/>
+									<button class="btn btn-warning" data-toggle="modal" data-target="#cancelReasonModal">取消订单</button>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="selectCourierModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title">
+					选择配送人员
+				</h4>
+			</div>
+			<div class="modal-body" id="selectCourier">
+				<div th:each="courier:${courierList}" class="radio">
+					<label th:name="${courier.id}">
+						<input type="radio" name="courierOptions" th:text="${courier.name}" >
+						<input style="display: none" type="hidden" th:text="${courier.phone}" >
+					</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button id="submitCourier" type="button" class="btn btn-primary" onclick="courierSubmit()">
+					提交更改
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="cancelReasonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title">
+					取消原因
+				</h4>
+			</div>
+			<div class="modal-body" id="cancelReason">
+				<div class="radio">
+					<label>
+						<input type="radio" name="cancelReason" value="没货估清"> 没货估清<br/>
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input type="radio" name="cancelReason" value="客户致电取消"> 客户致电取消<br/>
+					</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button id="submitCancelReason" type="button" class="btn btn-primary" onclick="cancelSubmit()">
+					提交更改
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+
+<script th:src="@{/static/js/jquery.min-2.1.4.js}"></script>
+<script th:src="@{/static/js/bootstrap.min-3.3.6.js}"></script>
+<script th:src="@{/static/js/footable.all.min.js}"></script>
+<script th:src="@{/static/js/jquery.form.min.js}"></script>
+<script th:src="@{/static/js/common.js}"></script>
+<script th:src="@{/static/js/json2.js}"></script>
+<script th:src="@{/static/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/static/js/bootstrap-datetimepicker.zh-CN.js}"></script>
+<script th:src="@{/static/js/toastr.min.js}"></script>
+<script type="text/javascript">
+    toastr.options.positionClass = 'toast-top-center';
+	function courierSubmit() {
+	    var courierId = $("[name='courierOptions']:checked").parent("label").attr("name");
+	    var id = $('#orderId').text();
+	    console.log(courierId);
+	    if(courierId == null || courierId.length <= 0 ) {
+			toastr.warning("请选择有效数据");
+		}else {
+	        $.ajax({
+				url: webRoot+'/catering/order/updateCourierId',
+				type: 'post',
+				data: {'id':id,'courierId':courierId},
+				success:function (data) {
+                    if(data.resultCode=="999999"){
+                        alert("操作成功！");
+                        location.reload();
+                    }
+                },
+                error:function(){
+                    alert("操作失败！");
+                }
+			})
+		}
+    };
+
+    function cancelSubmit() {
+        var id = $('#orderId').text();
+        var cancelReason = $("[name='cancelReason']:checked").val();
+        console.log(id);
+        if(cancelReason == null || cancelReason.length <= 0 ) {
+            toastr.warning("请选择有效数据");
+        }else {
+            $.ajax({
+                url: webRoot+'/catering/order/cancelOrder/',
+				data: {'id':id,'cancelReason':cancelReason},
+                type: 'post',
+                success:function (data) {
+                    if(data.resultCode=="999999"){
+                        alert("操作成功！");
+                        location.reload();
+                    }
+                },
+                error:function(){
+                    alert("操作失败！");
+                }
+            })
+        }
+    }
+
+
+	/*]]>*/
+</script>
+</html>

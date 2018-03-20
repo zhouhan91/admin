@@ -1,0 +1,29 @@
+components: 
+    fileUpload: 
+        domain: http://admin.wemecity.net
+        path: 
+            portrait: /portrait
+            communityCover: /communityCover
+            communityImg: /community
+            communityCoverImg: /community
+            roomImg: /community
+            editor: /editor
+            newsCover: /newsCover
+            goodsCoverPicture: /goods
+            cateringComment: /cateringComment
+
+system: 
+        user: 
+            defaultPortrait: /images/touxiang.jpg
+        news: 
+            navigation: 
+                  - code: babieta
+                    name: 巴别塔
+                  - code: lanmu
+                    name: 栏目
+                  - code: zhinan
+                    name: 指南
+                  - code: zhuanlan
+                    name: 专栏
+                  - code: studyAbroad
+                    name: 留学

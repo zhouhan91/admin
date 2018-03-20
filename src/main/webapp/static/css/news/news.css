@@ -1,0 +1,7 @@
+.group{margin-top: 10px;padding-top: 10px;width: 100%;border-top: 1px solid #cfdadd;}
+.top{height: 30px;}
+.td{width: 30%;margin-top: 10px;}
+.tr{width: 100%;margin-top: 10px;}
+.title{width:auto !important;height:100% !important; display:initial;position:inherit;padding:0;margin-left:5px;}
+input[type='checkbox']{margin-left: 10px;}
+.babietaDiv{padding: 20px 0 20px 0;border-top: 1px solid #cfdadd;margin: 20px 0 0 0;}

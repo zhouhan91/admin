@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wemeCity.components.dictionary.mapper.DictionaryMapper">
+
+	<resultMap id="dictionary" type="com.wemeCity.components.dictionary.model.Dictionary">
+		<id column="id" property="id" />
+		<result column="id" property="id" jdbcType="BIGINT" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="key" property="key" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="is_deleted" property="isDeleted" jdbcType="VARCHAR" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="modify_by" property="modifyBy" jdbcType="BIGINT" />
+		<result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<insert id="insertDictionary" parameterType="com.wemeCity.components.dictionary.model.Dictionary">
+		<![CDATA[
+			INSERT INTO DICTIONARY (
+				id,
+				code,
+				key,
+				name,
+				description,
+				remark,
+				is_deleted,
+				create_by,
+				create_time,
+				modify_by,
+				modify_time
+			) VALUES (
+				null,
+				#{code},
+				#{key},
+				#{name},
+				#{description},
+				#{remark},
+				#{isDeleted},
+				#{createBy},
+				#{createTime},
+				#{modifyBy},
+				#{modifyTime}
+			)
+		]]>
+		<selectKey resultType="long" keyProperty="id">
+			<![CDATA[
+				SELECT LAST_INSERT_ID() AS ID FROM DICTIONARY LIMIT 1
+			]]>
+		</selectKey>
+	</insert>
+
+	<update id="deleteDictionary" parameterType="java.lang.Long">
+		<![CDATA[
+			UPDATE dictionary SET IS_DELETED='Y' WHERE id = #{id}
+		]]>
+	</update>
+
+	<update id="updateDictionary" parameterType="map">
+		UPDATE dictionary set modify_time=now()
+		<if test="code !=null">
+			, code=#{code}
+		</if>
+		<if test="key !=null">
+			, key=#{key}
+		</if>
+		<if test="name !=null">
+			, name=#{name}
+		</if>
+		<if test="description !=null">
+			, description=#{description}
+		</if>
+		<if test="remark !=null">
+			, remark=#{remark}
+		</if>
+		<if test="isDeleted !=null">
+			, is_deleted=#{isDeleted}
+		</if>
+		<if test="createBy !=null">
+			, create_by=#{createBy}
+		</if>
+		<if test="createTime !=null">
+			, create_time=#{createTime}
+		</if>
+		<if test="modifyBy !=null">
+			, modify_by=#{modifyBy}
+		</if>
+		WHERE id=#{id}
+	</update>
+
+	<select id="readDictionary" parameterType="java.lang.Long" resultMap="dictionary">
+		SELECT * FROM dictionary WHERE id=#{id}
+	</select>
+
+	<select id="queryDictionaryList" parameterType="map" resultMap="dictionary">
+		SELECT * FROM dictionary WHERE 1=1 
+		<if test="id !=null">
+			AND id=#{id}
+		</if>
+		<if test="code !=null">
+			AND code=#{code}
+		</if>
+		<if test="key !=null">
+			AND key=#{key}
+		</if>
+		<if test="name !=null">
+			AND name=#{name}
+		</if>
+		<if test="description !=null">
+			AND description=#{description}
+		</if>
+		<if test="remark !=null">
+			AND remark=#{remark}
+		</if>
+		<if test="isDeleted !=null">
+			AND is_deleted=#{isDeleted}
+		</if>
+		<if test="createBy !=null">
+			AND create_by=#{createBy}
+		</if>
+		<if test="createTime !=null">
+			AND create_time=#{createTime}
+		</if>
+		<if test="modifyBy !=null">
+			AND modify_by=#{modifyBy}
+		</if>
+		<if test="modifyTime !=null">
+			AND modify_time=#{modifyTime}
+		</if>
+		<if test="sortColumn!=null">
+			order by ${sortColumn} ${sortType} 
+		</if>
+	</select>
+
+	<select id="queryDictionaryCount" parameterType="map" resultType="long">
+		SELECT COUNT(1) FROM DICTIONARY WHERE 1=1 
+		<if test="id !=null">
+			AND id=#{id}
+		</if>
+		<if test="code !=null">
+			AND code=#{code}
+		</if>
+		<if test="key !=null">
+			AND key=#{key}
+		</if>
+		<if test="name !=null">
+			AND name=#{name}
+		</if>
+		<if test="description !=null">
+			AND description=#{description}
+		</if>
+		<if test="remark !=null">
+			AND remark=#{remark}
+		</if>
+		<if test="isDeleted !=null">
+			AND is_deleted=#{isDeleted}
+		</if>
+		<if test="createBy !=null">
+			AND create_by=#{createBy}
+		</if>
+		<if test="createTime !=null">
+			AND create_time=#{createTime}
+		</if>
+		<if test="modifyBy !=null">
+			AND modify_by=#{modifyBy}
+		</if>
+		<if test="modifyTime !=null">
+			AND modify_time=#{modifyTime}
+		</if>
+		<if test="sortColumn!=null">
+			order by ${sortColumn} ${sortType} 
+		</if>
+	</select>
+
+</mapper>

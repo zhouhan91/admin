@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>餐饮订单管理</title>
+    <link th:href="@{/static/css/bootstrap.min-3.3.6.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/animate.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/pager.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/bootstrap-datetimepicker.css}" rel="stylesheet"/>
+    <style type="text/css">
+        th,td{
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>订单管理</h5>
+                </div>
+                <div class="ibox-content" style="overflow:hidden;zoom:1;">
+                    <div id="queryCateringOrder" role="form" class="form-inline" style="float:left">
+                        <div class="form-group">
+                            <label for="queryDateStart" class="sr-only" style="width:auto !important;height:100% !important; display:initial;position:inherit;padding:0;margin-left:5px;">选择下单时间：</label>
+                            <div class='input-group date'>
+                                <input type='text' style="width: 100px" class="form-control" id='queryDateStart' th:value="${dateStart}" readonly />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" style="width:auto !important;height:100% !important; display:initial;position:inherit;padding:0;margin-left:5px;">--</label>
+                            <div class='input-group date'>
+                                <input type='text' style="width: 100px" class="form-control" id='queryDateEnd' th:value="${dateEnd}" readonly />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input id="queryCode" type="text" placeholder="请输入订单编号" class="form-control w_duan" th:value="${code}">
+                        </div>
+                        <div class="form-group">
+                            <input id="queryPhone" type="text" placeholder="请输入联系电话" class="form-control w_duan" th:value="${phone}">
+                        </div>
+                        <div class="form-group">
+                            <input id="queryRestaurantName" type="text" placeholder="请输入店铺名称" class="form-control w_duan" th:value="${restaurantName}">
+                        </div>
+                        <div class="form-group">
+                            <select id="queryStatus" class="form-control">
+                                <option value="" th:selected="(${status}=='')">订单状态</option>
+                                <option value="10" th:selected="(${status}==10)">新建</option>
+                                <option value="20" th:selected="(${status}==20)">支付中</option>
+                                <option value="30" th:selected="(${status}==30)">支付成功</option>
+                                <option value="40" th:selected="(${status}==40)">支付失败</option>
+                                <option value="50" th:selected="(${status}==50)">待配送</option>
+                                <option value="60" th:selected="(${status}==60)">待结算</option>
+                                <option value="70" th:selected="(${status}==70)">已完成</option>
+                                <option value="80" th:selected="(${status}==80)">已取消</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="queryPayType" class="form-control" placeholder="支付方式">
+                                <option value="" th:selected="(${payType}=='')">支付方式</option>
+                                <option value="offLine" th:selected="(${payType}=='offLine')">线下</option>
+                                <option value="wxpay" th:selected="(${payType}=='wxpay')">微信</option>
+                                <option value="alipay" th:selected="(${payType}=='alipay')">支付宝</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" type="button" style="margin-bottom:2px;" onclick="query(1)">查找</button>
+                        <button class="btn btn-white" type="button" style="margin-bottom:2px;" onclick="clearQuery()">清除</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <!--<div class="table-responsive col-xs-2">-->
+                        <!--<table class="footable table table-striped">-->
+                            <!--<thead>-->
+                                <!--<tr>-->
+                                    <!--<th width="100%">订单管理</th>-->
+                                <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody>-->
+                                <!--<tr>-->
+                                    <!--<td>双击这里，进入编辑</td>-->
+                                <!--</tr>-->
+                            <!--</tbody>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                    <div class="table-responsive col-xs-12">
+                        <table id="cateringOrderList" class="footable table table-striped" data-show-refresh="true" data-row-style="rowStyle">
+                            <thead>
+                            <tr>
+                                <th style="display: none" width="15%">订单ID</th>
+                                <th width="15%">订单编号</th>
+                                <th width="10%">订单状态</th>
+                                <th width="15%">下单时间</th>
+                                <th width="10%">下单店铺</th>
+                                <th width="10%">姓名</th>
+                                <th width="10%">联系方式</th>
+                                <th width="10%">订单金额</th>
+                                <th width="5%">支付状态</th>
+                                <th width="5%">支付方式</th>
+                                <th width="10%">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="cateringOrderDTO:${page }">
+                                <td style="display: none" th:text="${cateringOrderDTO.id }"></td>
+                                <td><a th:href="@{/catering/order/initUpdate(id=${cateringOrderDTO.id })}" th:text="${cateringOrderDTO.code }"></a></td>
+                                <td th:switch="${cateringOrderDTO.status }">
+                                    <span th:case="10">新建</span>
+                                    <span th:case="30">待确认</span>
+                                    <span th:case="50">待配送</span>
+                                    <span th:case="60">待结算</span>
+                                    <span th:case="70">已完成</span>
+                                    <span th:case="80">已取消</span>
+                                </td>
+                                <td th:text="${cateringOrderDTO.createTime }"></td>
+                                <td th:text="${cateringOrderDTO.restaurantName }"></td>
+                                <td th:text="${cateringOrderDTO.name }"></td>
+                                <td th:text="${cateringOrderDTO.phone }"></td>
+                                <td th:text="${cateringOrderDTO.cashAmount }"></td>
+                                <td th:switch="${cateringOrderDTO.payStatus }">
+                                    <span th:case="1">未支付</span>
+                                    <span th:case="2">支付中</span>
+                                    <span th:case="3">已支付</span>
+                                    <span th:case="4">支付失败</span>
+                                </td>
+                                <td th:switch="${cateringOrderDTO.payType }">
+                                    <span th:case="offLine">线下</span>
+                                    <span th:case="wxpay">微信</span>
+                                    <span th:case="alipay">支付宝</span>
+                                </td>
+                                <td><a th:href="@{/catering/order/initUpdate(id=${cateringOrderDTO.id })}">订单详情</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <ul class="pagination" id="page"></ul>
+                        <div class="pageJump">
+                            <span>跳转到</span><input type="text" id="jumpInput" style="width: 40px;padding: 5px;margin-left: 3px;"/> <span>页</span>
+                            <button type="button" class="button">确定</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script th:src="@{/static/js/jquery.min-2.1.4.js}"></script>
+<script th:src="@{/static/js/bootstrap.min-3.3.6.js}"></script>
+<script th:src="@{/static/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/static/js/common.js}"></script>
+<script th:src="@{/static/js/pager.js}"></script>
+<script type="text/javascript">
+    /*<![CDATA[*/
+
+    $().ready(function(){
+        Page({
+            num:[[${page.pages}]],
+            startnum:[[${page.pageNum}]],
+            elem:$('#page'),
+            callback:function(n){
+                query(n);
+            }
+        });
+        var picker1 = $("#queryDateStart").datetimepicker({
+            format: 'yyyy-mm-dd',
+            minView:'month',
+            language: 'zh-CN',
+            autoclose:true
+        });
+
+        var picker2 = $("#queryDateEnd").datetimepicker({
+            format: 'yyyy-mm-dd',
+            minView:'month',
+            language: 'zh-CN',
+            autoclose:true
+        });
+        picker1.on("click",function(){
+            $("#queryDateStart").datetimepicker("setEndDate",$("#queryDateEnd").val())
+        });
+        picker2.on("click",function(){
+            $("#queryDateEnd").datetimepicker("setStartDate",$("#queryDateStart").val())
+        });
+
+        $(".jumpBtn").on("click", function(){query($("#jumpInput").val())});
+
+    });
+
+
+
+    function query(page){
+
+        var dateStart = $.trim($('#queryDateStart').val());
+        var dateEnd = $.trim($('#queryDateEnd').val());
+        var code = $.trim($('#queryCode').val()).toString();
+        var phone = $.trim($('#queryPhone').val()).toString();
+        var restaurantName = $.trim($('#queryRestaurantName').val()).toString();
+        var status = $.trim($('#queryStatus option:selected').val()).toString();
+        var payType = $.trim($('#queryPayType option:selected').val()).toString();
+        location.href="[[@{/catering/order/list/}]]"+page+"?"+"dateStart="+dateStart+"&dateEnd="+dateEnd+"&code="+code+"&phone="+phone+"&restaurantName="+restaurantName+"&status="+status+"&payType="+payType;
+
+    }
+
+    function clearQuery() {
+        $("#queryCateringOrder input").val("");
+        $("#queryCateringOrder select option:selected").removeAttr("selected");
+    }
+
+    /*]]>*/
+</script>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>编辑新闻</title>
+<link th:href="@{/static/css/bootstrap.min-3.3.6.css}" rel="stylesheet" />
+<link th:href="@{/static/css/footable.core.css}" rel="stylesheet" />
+<link th:href="@{/static/css/animate.css}" rel="stylesheet" />
+<link th:href="@{/static/css/style.css}" rel="stylesheet" />
+<link th:href="@{/static/css/news/news.css?v=1}" rel="stylesheet" />
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>巴别塔</h5>
+					</div>
+					<div class="ibox-content" style="overflow: hidden; zoom: 1;">
+						<input type="hidden" id="newsId" th:value="${news.id}" /> <a th:href="@{/news/queryBabietaList/1}"><button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;">返回</button></a>
+						<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="putOffLine()">下架</button>
+						<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="putOnLine()">上架</button>
+						<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="saveBabieta();">保存</button>
+					</div>
+					<div class="group">
+						<div role="form" class="form-inline tr">
+							<div class="form-group tr">
+								<input type="hidden" id="coverPicture" th:value="${news.coverPicture}" /> <label class="sr-only title" for="title" style="margin-right: 25px;">封面图：</label><img onclick="chooseFile('newsCover');" id="coverPictureImg" style="width: 150px; border: 1px solid; cursor: pointer;" th:src="${#strings.isEmpty(news.coverPicture)}?@{/static/images/jiahao.png}:@{${news.coverPicture}}">
+							</div>
+						</div>
+						<div role="form" class="form-inline tr">
+							<div class="form-group tr">
+								<label class="sr-only title" for="title" style="margin-right: 25px;">标题：</label><input id="title" th:value="${news.title}" type="text" class="form-control" placeholder="请输入标题" maxlength="30" style="width: 80%;" />
+							</div>
+						</div>
+						<div class="babietaDiv">
+							<div class="babietaButton">
+								<button type="button" class="btn btn-primary" onclick="addBabieta();" style="margin-left: 20px;">增加一行</button>
+							</div>
+							<div role="form" class="form-inline tr" id="babietaContentDIV">
+								<div class="form-group tr"  th:each="babieta:${news.lstBabieta}">
+									<label class="sr-only title" style="margin-right: 25px;">内容：</label><input th:babietaId="${babieta.id}" type="text" name="babietaContent" th:value="${babieta.content}" class="form-control" placeholder="请输入内容" style="width: 80%;" />
+									<a th:onclick="'javascript:deleteBabieta(this, '+${babieta.id}+');'" style="margin-left: 50px;">删除</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- 文件上传框框 -->
+	<div style="display: none;">
+		<form id="fileUploadForm" name="fileUploadForm" target="fileUploadFrame" method="post" enctype="multipart/form-data">
+			<input type="file" name="file" id="fileUploadBtn" accept="image/*" onchange="upload();"> <input type="hidden" id="busiCode" name="busiCode" value="">
+		</form>
+		<iframe name="fileUploadFrame" id="fileUploadFrame"></iframe>
+	</div>
+</body>
+
+
+<script th:src="@{/static/js/jquery.min-2.1.4.js}"></script>
+<script th:src="@{/static/js/bootstrap.min-3.3.6.js}"></script>
+<script th:src="@{/static/js/footable.all.min.js}"></script>
+<script th:src="@{/static/js/jquery.form.min.js}"></script>
+<script th:src="@{/static/js/common.js}"></script>
+<script th:src="@{/static/js/json2.js}"></script>
+<script th:src="@{/static/js/news/news.js}"></script>
+<script type="text/javascript">
+	/*<![CDATA[*/
+	$().ready(function() {
+	});
+
+	/*]]>*/
+</script>
+</html>

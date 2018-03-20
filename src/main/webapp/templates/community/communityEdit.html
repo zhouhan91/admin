@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>编辑房源</title>
+<link th:href="@{/static/css/bootstrap.min-3.3.6.css}" rel="stylesheet" />
+<link th:href="@{/static/css/footable.core.css}" rel="stylesheet" />
+<link th:href="@{/static/css/animate.css}" rel="stylesheet" />
+<link th:href="@{/static/css/style.css}" rel="stylesheet" />
+<link th:href="@{/static/css/bootstrap-datetimepicker.css}" rel="stylesheet" />
+<link th:href="@{/static/css/community/community.css}" rel="stylesheet" />
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeIn">
+		<div class="row">
+			<div class="col-sm-6" style="width: 100%;">
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">房源信息</a></li>
+						<li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">房源配图</a></li>
+						<li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false">房型信息</a></li>
+					</ul>
+					<div class="tab-content">
+						<div id="tab-1" class="tab-pane active">
+							<div class="panel-body">
+								<div class="top">
+									<input type="hidden" id="communityId" th:value="${community.id}" /> <a th:href="@{/community/list/1}"><button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;">返回</button></a>
+									<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="communityOffLine()">下架</button>
+									<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="communityOnLine()">上架</button>
+									<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="saveCommunityInfo()">保存</button>
+								</div>
+								<div class="group">
+									<div role="form" class="form-inline tr">
+										<div class="form-group tr">
+											<input type="hidden" id="coverPicture" th:value="${community.coverPicture}" />
+											<label class="sr-only title" for="coverPictureImg" style="margin-right: 25px;">封面图(750*500)：</label><img onclick="chooseFile('communityCover');" id="coverPictureImg" style="width: 150px;height:100px; border: 1px solid; cursor: pointer;" th:src="${community.coverPicture}">
+										</div>
+									</div>
+									<div role="form" class="form-inline tr">
+										<div class="form-group td">
+											<label class="sr-only title" for="supplier">供应商：</label><select class="form-control" id="supplier"><option value="0">-- 请选择 --</option>
+												<option th:each="supplier:${allSupplier}" th:value="${supplier.id}" th:text="${supplier.name}" th:selected="${supplier.id == community.supplierId}">法国租房网</option></select>
+										</div>
+										<div class="form-group td">
+											<label class="sr-only title" for="sourceType">房源：</label><select class="form-control" id="sourceType"><option>-- 请选择 --</option>
+												<option th:each="sourceType:${allCommunitySourceType}" th:value="${sourceType.key}" th:text="${sourceType.name}" th:selected="${sourceType.key == community.sourceTypeKey}">中介</option></select>
+										</div>
+										<div class="form-group td">
+											<label class="sr-only title" for="depositType">排序号：</label><input id="sortNum" th:value="${community.sortNum}" type="text" class="form-control" placeholder="请输入排序号，降序" />
+										</div>
+									</div>
+									<div role="form" class="form-inline tr">
+										<div class="form-group tr">
+											<label class="sr-only title" for="name" style="margin-right: 25px;">房屋中文名称：</label><input id="name" th:value="${community.name}" type="text" class="form-control" placeholder="请输入中文名称" style="width: 80%;" />
+										</div>
+									</div>
+									<div role="form" class="form-inline tr">
+										<div class="form-group tr">
+											<label class="sr-only title" for="localName">房屋当地语言名称：</label><input id="localName" th:value="${community.localName}" type="text" class="form-control" placeholder="请输入当地语言名字" style="width: 80%;" />
+										</div>
+									</div>
+									<div role="form" class="form-inline tr">
+										<div class="form-group td">
+											<label class="sr-only title" for="type">房屋类型：</label><select id="type" class="form-control"><option th:each="communityType:${allCommunityType}" th:value="${communityType.key}" th:text="${communityType.name}" th:selected="${communityType.key == community.typeKey}">民居</option>
+											</select>
+										</div>
+										<div class="form-group td">
+											<label class="sr-only title" for="leaseType">租赁方式：</label><select id="leaseType" class="form-control"><option th:each="leaseType:${allCommunityLeaseType}" th:value="${leaseType.key}" th:text="${leaseType.name}" th:selected="${leaseType.key == community.leaseTypeKey}">整租</option></select>
+										</div>
+										<div class="form-group td">
+											<label class="sr-only title" for="depositType">押金方式：</label><select id="depositType" class="form-control"><option th:each="depositType:${allCommunityDepositType}" th:value="${depositType.key}" th:text="${depositType.name}" th:selected="${depositType.key == community.depositTypeKey}">押一付一(月付)</option></select>
+										</div>
+									</div>
+									<div role="form" class="form-inline tr">
+										<div class="form-group td">
+											<label class="sr-only title" for="leaseModel">租期：</label><span th:each="leaseModel:${allRoomLeaseModel}"><label><input type="checkbox" name="leaseModel" th:value="${leaseModel.key}" th:tname="${leaseModel.name}" th:text="${leaseModel.name}" th:checked="${#strings.contains(community.leaseModelKey, ','+leaseModel.key+',')}" /></label></span>
+										</div>
+										<div class="form-group td">
+											<label class="sr-only title" for="leaseLimit">起租时间：</label><select id="leaseLimit" class="form-control"><option>一个月起租</option>
+												<option>两个月起租</option>
+												<option>三个月起租</option>
+											</select>
+										</div>
+										<div class="form-group td">
+											<label class="sr-only title" for="roomType">房型：</label><span th:each="roomType:${allRoomType}"><label><input type="checkbox" name="communityRoomType" th:value="${roomType.key}" th:tname="${roomType.name}" th:text="${roomType.name}" th:checked="${#strings.contains(community.roomTypeKey, ','+roomType.key+',')}" /> </label></span>
+										</div>
+									</div>
+									<div role="form" class="form-inline tr">
+										<div class="form-group td">
+											<label class="sr-only title" for="owner">房东：</label><input id="owner" class="form-control" type="text" name="owner" placeholder="海外华人(中文)" max="50" th:value="${community.owner}" />
+										</div>
+										<div class="form-group td">
+											<label class="sr-only title" for="bathroomType">卫浴设施：</label><span th:each="bathroomType:${allBathroomType}"><label><input type="checkbox" name="bathroomType" th:value="${bathroomType.key}" th:tname="${bathroomType.name}" th:text="${bathroomType.name}" th:checked="${#strings.contains(community.bathroomTypeKey, ','+bathroomType.key+',')}" /></label></span>
+										</div>
+									</div>
+									<div role="form" class="form-inline tr">
+										<div class="form-group td">
+											<label class="sr-only title" for="ownerPhone">房东电话：</label><input id="ownerPhone" class="form-control" type="text" name="ownerPhone" placeholder="输入房东电话" max="50" th:value="${community.ownerPhone}" />
+										</div>
+										<div class="form-group td">
+											<label class="sr-only title" for="ownerWechat">房东微信：</label><input id="ownerWechat" class="form-control" type="text" name="ownerWechat" placeholder="房东微信" max="50" th:value="${community.ownerWechat}" />
+										</div>
+										<div class="form-group td">
+											<label class="sr-only title" for="ownerEmail">房东邮箱：</label><input id="ownerEmail" class="form-control" type="text" name="ownerEmail" placeholder="房东邮箱" max="200" th:value="${community.ownerEmail}" />
+										</div>
+									</div>
+									<div role="form" class="form-inline tr">
+										<div class="form-group tr">
+											<label class="sr-only title" for="keyWords">关键词：</label><input id="keyWords" th:value="${community.keyWords}" type="text" class="form-control" placeholder="关键词，以英文逗号分隔" style="width: 80%;" />
+										</div>
+									</div>
+								</div>
+								<div class="group">
+									<div role="form" class="form-inline">
+										<div class="form-group  tr">
+											<label class="sr-only title" for="privateFacilities">房间设施：</label><span th:each="facilities:${privateFacilities}"><label><input type="checkbox" name="privateFacilities" th:text="${facilities.name}" th:value="${facilities.id}" th:tname="${facilities.name}" th:checked="${#strings.contains(community.privateFacilities, ','+facilities.id+',') }" /></label> </span>
+										</div>
+									</div>
+									<div role="form" class="form-inline tr">
+										<div class="form-group  tr">
+											<label class="sr-only title" for="commonFacilities">公共设施：</label><span th:each="facilities:${commonFacilities}"><label><input type="checkbox" name="commonFacilities" th:text="${facilities.name}" th:value="${facilities.id}" th:tname="${facilities.name}" th:checked="${#strings.contains(community.commonFacilities, ','+facilities.id+',') }" /></label> </span>
+										</div>
+									</div>
+									<div role="form" class="form-inline tr">
+										<div class="form-group  tr">
+											<label class="sr-only title" for="rentFacilities">房租包含：</label><span th:each="facilities:${rentFacilities}"><label><input type="checkbox" name="rentFacilities" th:text="${facilities.name}" th:value="${facilities.id}" th:checked="${#strings.contains(community.rentFacilities, ','+facilities.id+',') }" /></label> </span>
+										</div>
+									</div>
+								</div>
+								<div class="group">
+									<div role="form" class="form-inline">
+										<div class="form-group tr">
+											<label class="sr-only title" for="countryCode">国家：</label><select id="countryCode" class="form-control" name="countryCode" onchange="initAddress($(this).val(),'','')"><option th:each="country:${lstCountry}" th:value="${country.code}" th:id="${country.id}" th:text="${country.name}+'-'+${country.chineseName}">法国</option></select> <label class="sr-only title" for="cityCode">城市：</label><select
+												id="cityCode" class="form-control" onchange="showDistrict($(this).val(),'');"></select> <label class="sr-only title" for="districtCode">城区：</label><select id="districtCode" class="form-control"></select> <label class="sr-only title" for="address"></label><input id="address" class="form-control" type="text" name="address" placeholder="具体地址" max="200" style="width: 300px;"
+												th:value="${community.address}" />
+										</div>
+									</div>
+									<div role="form" class="form-inline">
+										<div class="form-group tr">
+											<p>
+												<label class="sr-only title" for="routeDescription" style="line-height: 1; vertical-align: top;">交通说明：</label>
+												<textarea rows="5" cols="20" maxlength="200" id="routeDescription" name="routeDescription" style="width: 50%;" th:text="${community.routeDescription}"></textarea>
+												</span>
+											</p>
+										</div>
+									</div>
+									<div role="form" class="form-inline tr">
+										<div class="form-group td">
+											<label class="sr-only title" for="longitude">经度：</label><input id="longitude" class="form-control" type="text" name="longitude" placeholder="选择地图确定经度" th:value="${community.longitude}" />
+										</div>
+										<div class="form-group td">
+											<label class="sr-only title" for="latitude">纬度：</label><input id="latitude" class="form-control" type="text" name="latitude" placeholder="选择地图确定纬度" th:value="${community.latitude}" />
+										</div>
+									</div>
+								</div>
+								<div class="group">
+									<div role="form" class="form-inline">
+										<div class="form-group tr">
+											<label class="sr-only title" for="advantage">房源视频：</label><input class="form-control" type="text" th:value="${community.videoUrl}" name="videoUrl" id="videoUrl" placeholder="房源视频地址" maxlength="500" style="width: 50%;" />
+										</div>
+										<div class="form-group tr">
+											<label class="sr-only title" for="advantage">房源优势：</label><input class="form-control" type="text" th:value="${community.advantage}" name="advantage" id="advantage" placeholder="最多30字" maxlength="30" style="width: 50%;" />
+										</div>
+										<div role="form" class="form-inline tr">
+											<label class="sr-only title" for="description" style="line-height: 1; vertical-align: top;">房源介绍：</label>
+											<textarea rows="5" cols="20" maxlength="200" id="description" name="description" style="width: 50%;" th:text="${community.description}"></textarea>
+										</div>
+										<div role="form" class="form-inline tr">
+											<label class="sr-only title" for="tip" style="line-height: 1; vertical-align: top;">租房须知：</label><span><textarea rows="5" cols="20" maxlength="200" id="tip" name="tip" style="width: 50%;" th:text="${community.tip}"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="tab-2" class="tab-pane">
+							<div class="ibox-content">
+								<div class="top">
+									<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="saveCommunityImg();">保存</button>
+									<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="chooseFile('communityImg');">上传</button>
+								</div>
+								<div class="table-responsive group">
+									<table class="footable table table-striped">
+										<thead>
+											<tr>
+												<th>图片(点击查看大图)</th>
+												<th>排序号</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody id="communityImgs">
+											<!-- 
+											<tr>
+												<td><a href="javascript:showImgdialog(1)"><img class="tdImg" alt="" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1508673567145&di=68e37ab79ebe5a4c828a93753736a996&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2Fd439b6003af33a87d8d517becc5c10385243b5dd.jpg"/></a></td>
+												<td><input type="text" maxlength="2" style="width: 100px;" /></td>
+												<td><button type="button" class="btn btn-warning">删除</button></td>
+											</tr>
+											 -->
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+						</div>
+						<div id="tab-3" class="tab-pane">
+							<div class="ibox-content">
+								<div class="top">
+									<button type="button" class="btn btn-danger" style="float: right; margin-right: 10px;" onclick="deleteRooms();">删除</button>
+									<button type="button" class="btn btn-danger" style="float: right; margin-right: 10px;" onclick="putRoomOffLine();">下架</button>
+									<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="putRoomOnLine()">上架</button>
+									<button type="button" class="btn btn-primary" style="float: right; margin-right: 10px;" onclick="initInsertRoom()">新增</button>
+								</div>
+								<div class="table-responsive group">
+									<table class="footable table table-striped">
+										<thead>
+											<tr>
+												<th><input type="checkbox" id="allBox"></th>
+												<th>房型名称</th>
+												<th>床型</th>
+												<th>面积(㎡)</th>
+												<th>市场价(€)</th>
+												<th>优惠价(€)</th>
+												<th>可入住开始日期</th>
+												<th>可入住结束日期</th>
+												<th>起租条件</th>
+												<th>状态</th>
+											</tr>
+										</thead>
+										<tbody id="roomList">
+											<!-- <tr>
+                                              <td><input type="checkbox" name="ckBox"></td>
+                                              <td><a href="javascript:initUpdateRoom();">独立单房</a></td>
+                                              <td>大床</td>
+                                              <td>25㎡</td>
+                                              <td>200€</td>
+                                              <td>180€</td>
+                                              <td>2017-09-22</td>
+                                              <td>2017-10-11</td>
+                                              <td>三个月起租</td>
+                                              <td>已上架</td>
+                                            </tr> -->
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="panel blank-panel">
+					<div class="panel-body"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 图片弹出框 -->
+	<div id="img-modal-form" class="modal fade" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px !important;">
+			<div class="modal-content">
+				<div>
+					<img id="modalImg" style="width: 100%;" alt="" src="" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 房型编辑框 -->
+	<div id="room-edit-modal-form" class="modal fade" aria-hidden="true" role="dialog">
+		<div class="modal-dialog" role="document" style="width: 900px !important; background-color: white;">
+			<div class="modal-content">
+				<div class="modalTitle">
+					<span style="float: left;">房型编辑</span><span><button type="button" class="btn btn-primary" style="margin-right: 15px; float: right;" onclick="saveRoom();">保存</button></span>
+				</div>
+				<div class="modalContent">
+					<input type="hidden" id="roomId" name="roomId" />
+					<div role="form" class="form-inline tr">
+						<div class="form-group">
+							<label class="sr-only title modalContentLabel" for="roomName">房型名称：</label><input style="margin-left: 14px; width: 200px;" class="form-control modalContentInput" type="text" id="roomName" max="100" placeholder="请输入房型名称，100字 以内" />
+						</div>
+						<div class="form-group" style="margin-left: 90px;">
+							<label class="sr-only title modalContentLabel" for="roomType">房型：</label><select style="margin-left: 3px; width: 200px;" class="form-control modalContentInput" id="roomType"><option th:each="roomType:${allRoomType}" th:value="${roomType.key}" th:text="${roomType.name}"></option></select>
+						</div>
+					</div>
+					<div role="form" class="form-inline tr">
+						<div class="form-group">
+							<label class="sr-only title modalContentLabel" for="roomBedType">床型：</label><select style="margin-left: 40px; width: 200px;" class="form-control modalContentInput" id="roomBedType"><option th:each="roomBedType:${allRoomBedType}" th:value="${roomBedType.key}" th:text="${roomBedType.name}"></option></select>
+						</div>
+						<div class="form-group" style="margin-left: 73px;">
+							<label class="sr-only title modalContentLabel" for="roomArea">面积(㎡)：</label><input class="form-control modalContentInput" type="text" id="roomArea" max="10" placeholder="请输入数字面积" />
+						</div>
+					</div>
+					<div role="form" class="form-inline tr">
+						<div class="form-group">
+							<label class="sr-only title modalContentLabel" for="roomLeaseModel">租赁类型：</label><select style="margin-left: 18px; width: 200px;" class="form-control modalContentInput" id="roomLeaseModel" onchange="checkLeaseModel();"><option th:each="leaseModel:${allRoomLeaseModel}" th:value="${leaseModel.key}" th:text="${leaseModel.name}"></option></select>
+						</div>
+						<div class="form-group" style="margin-left: 65px;">
+							<label class="sr-only title modalContentLabel" for="roomLeaseLimit">最短租期：</label><input style="width: 140px;" class="form-control modalContentInput" type="text" id="roomLeaseLimit" placeholder="请输入最短租期" /><select class="form-control" id="roomLeaseUnit"><option value="月">月</option>
+								<option value="天">天</option></select>
+						</div>
+					</div>
+					<div role="form" class="form-inline tr">
+						<div class="form-group">
+							<label class="sr-only title modalContentLabel" for="roomDateAllowedStart">可入住开始日期：</label><input type="text" id="roomDateAllowedStart" style="width: 178px;" class="form-control modalContentInput" readonly="readonly" />
+						</div>
+						<div class="form-group" style="margin-left: 30px;">
+							<label class="sr-only title modalContentLabel" for="roomDateAllowedEnd">可入住结束日期：</label><input class="form-control modalContentInput" type="text" id="roomDateAllowedEnd" readonly="readonly" />
+						</div>
+					</div>
+					<div role="form" class="form-inline tr">
+						<div class="form-group">
+							<label class="sr-only title modalContentLabel" for="roomPrice">市场价(€)：</label><input style="margin-left: 12px;" class="form-control modalContentInput" type="text" id="roomPrice" placeholder="请输入市场价" />
+						</div>
+						<div class="form-group" style="margin-left: 65px;">
+							<label class="sr-only title modalContentLabel" for="roomDiscountPrice">优惠价(€)：</label><input class="form-control modalContentInput" type="text" id="roomDiscountPrice" placeholder="请输入优惠价" />
+						</div>
+					</div>
+					<div role="form" class="form-inline tr">
+						<div class="form-group">
+							<label class="sr-only title modalContentLabel" for="roomSortNum">排序号：</label><input class="form-control modalContentInput" type="text" id="roomSortNum" placeholder="请输入排序号：数字" />
+						</div>
+					</div>
+				</div>
+				<div class="roomImgTop" style="height: auto;" id="payDIV">
+					<div role="form" class="form-inline tr">
+						<div class="form-group" style="margin-left: 40px;">
+							<label class="sr-only title modalContentLabel" for="payFlag">是否需要付款：</label><label class="radio-inline"><input type="radio" name="payFlag" value="Y" onchange="checkPayFlag();">是</label><label class="radio-inline"><input type="radio" name="payFlag" value="N" onchange="checkPayFlag();">否</label>
+						</div>
+					</div>
+					<div role="form" class="form-inline tr" id="tipFlagDIV">
+						<div class="form-group" style="margin-left: 40px;">
+							<label class="sr-only title modalContentLabel" for="tipFlag">是否需要付定金：</label><label class="radio-inline"><input type="radio" name="tipFlag" value="Y" onchange="checkTipFlag();">是</label><label class="radio-inline"><input type="radio" name="tipFlag" value="N" onchange="checkTipFlag();">否</label>
+						</div>
+						<div class="form-group" style="margin-left: 155px;" id="roomTipPriceDIV">
+							<label class="sr-only title modalContentLabel" for="roomTipPrice">定金金额：</label><input class="form-control modalContentInput" type="text" id="roomTipPrice" placeholder="请输入定金金额" />
+						</div>	
+					</div>
+					<div role="form" class="form-inline tr" id="firstDepositDIV">
+						<div class="form-group" style="margin-left: 40px;">
+							<label class="sr-only title modalContentLabel" for="firstDepositMonth">首次支付押金月数：</label><input class="form-control modalContentInput" type="text" id="firstDepositMonth" placeholder="请输入定金金额" />
+						</div>
+						<div class="form-group" style="margin-left: 12px;">
+							<label class="sr-only title modalContentLabel" for="roomDepositPrice">每月押金金额：</label><input class="form-control modalContentInput" type="text" id="roomDepositPrice" placeholder="请输入押金金额" />
+						</div>
+					</div>
+					<div role="form" class="form-inline tr" id="firstRentDIV">
+						<div class="form-group" style="margin-left: 40px;">	
+							<label class="sr-only title modalContentLabel" for="firstRentMonth">首次支付房租月数：</label><input class="form-control modalContentInput" type="text" id="firstRentMonth" placeholder="请输入定金金额" />
+						</div>
+					</div>
+				</div>
+				<div class="roomImgTop" style="padding-left: 35px;">
+					<button type="button" class="btn btn-primary" style="margin-le	ft: 15px; display: none;">上传</button>
+					<span>为保证效果，房型图片请保证分辨率为：520px*350px</span>
+				</div>
+				<div class="roomImgDiv">
+					<div class="row">
+						<div class="col-xs-6 col-md-3 roomImg">
+							<a class="thumbnail" style="padding: 0; margin: 0 0 4px 0;"><img name="roomImg" onclick="curRoomgImgIndex=0;chooseFile('roomImg');" id="roomImg_0" imgId="" th:src="@{/static/images/jiahao.png}" />
+							</a> <a onclick="deleteRoomImg(0);" style="text-align: center;">删除</a>
+						</div>
+						<div class="col-xs-6 col-md-3 roomImg">
+							<a class="thumbnail" style="padding: 0; margin: 0 0 4px 0;"> <img name="roomImg" onclick="curRoomgImgIndex=1;chooseFile('roomImg');" id="roomImg_1" imgId="" th:src="@{/static/images/jiahao.png}" />
+							</a> <a onclick="deleteRoomImg(1);" style="text-align: center;">删除</a>
+						</div>
+						<div class="col-xs-6 col-md-3 roomImg">
+							<a class="thumbnail" style="padding: 0; margin: 0 0 4px 0;"> <img name="roomImg" onclick="curRoomgImgIndex=2;chooseFile('roomImg');" id="roomImg_2" imgId="" th:src="@{/static/images/jiahao.png}" />
+							</a> <a onclick="deleteRoomImg(2);" style="text-align: center;">删除</a>
+						</div>
+						<div class="col-xs-6 col-md-3 roomImg">
+							<a class="thumbnail" style="padding: 0; margin: 0 0 4px 0;"> <img name="roomImg" onclick="curRoomgImgIndex=3;chooseFile('roomImg');" id="roomImg_3" imgId="" th:src="@{/static/images/jiahao.png}" />
+							</a> <a onclick="deleteRoomImg(3);" style="text-align: center;">删除</a>
+						</div>
+						<div class="col-xs-6 col-md-3 roomImg">
+							<a class="thumbnail" style="padding: 0; margin: 0 0 4px 0;"> <img name="roomImg" onclick="curRoomgImgIndex=4;chooseFile('roomImg');" id="roomImg_4" imgId="" th:src="@{/static/images/jiahao.png}" />
+							</a> <a onclick="deleteRoomImg(4);" style="text-align: center;">删除</a>
+						</div>
+						<div class="col-xs-6 col-md-3 roomImg">
+							<a class="thumbnail" style="padding: 0; margin: 0 0 4px 0;"> <img name="roomImg" onclick="curRoomgImgIndex=5;chooseFile('roomImg');" id="roomImg_5" imgId="" th:src="@{/static/images/jiahao.png}" />
+							</a> <a onclick="deleteRoomImg(5);" style="text-align: center;">删除</a>
+						</div>
+						<div class="col-xs-6 col-md-3 roomImg">
+							<a class="thumbnail" style="padding: 0; margin: 0 0 4px 0;"> <img name="roomImg" onclick="curRoomgImgIndex=6;chooseFile('roomImg');" id="roomImg_6" imgId="" th:src="@{/static/images/jiahao.png}" />
+							</a> <a onclick="deleteRoomImg(6);" style="text-align: center;">删除</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 文件上传框框 -->
+	<div style="display: none;">
+		<form id="fileUploadForm" name="fileUploadForm" target="fileUploadFrame" method="post" enctype="multipart/form-data">
+			<input type="file" name="file" id="fileUploadBtn" accept="image/*" onchange="upload();"> <input type="hidden" id="busiCode" name="busiCode" value="">
+		</form>
+		<iframe name="fileUploadFrame" id="fileUploadFrame"></iframe>
+	</div>
+</body>
+<script th:src="@{/static/js/jquery.min-2.1.4.js}"></script>
+<script th:src="@{/static/js/bootstrap.min-3.3.6.js}"></script>
+<script th:src="@{/static/js/footable.all.min.js}"></script>
+<script th:src="@{/static/js/jquery.form.min.js}"></script>
+<script th:src="@{/static/js/common.js}"></script>
+<script th:src="@{/static/js/json2.js}"></script>
+<script th:src="@{/static/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/static/js/bootstrap-datetimepicker.zh-CN.js}"></script>
+<script th:src="@{/static/js/community/community.js}"></script>
+<script type="text/javascript">
+	/*<![CDATA[*/
+	$().ready(function() {
+		// 加载房源图片
+		loadCommunityImgs();
+		// 加载房型
+		loadRoomList();
+		// 初始化日期输入框
+		initTimeInput();
+		// 加载地址
+		initAddress("[[${community.countryCode}]]", "[[${community.cityCode}]]", "[[${community.districtCode}]]");
+		// 监控地图
+		window.addEventListener('message', function(event) {
+	        var loc = event.data;
+	        if (loc && loc.module == 'locationPicker') {
+	        	$("#longitude").val(loc.latlng.lng);
+	        	$("#latitude").val(loc.latlng.lat);
+	        }                                
+	    }, false);
+	});
+
+	/*]]>*/
+</script>
+</html>

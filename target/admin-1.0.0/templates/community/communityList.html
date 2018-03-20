@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>房源管理</title>
+    <link th:href="@{/static/css/bootstrap.min-3.3.6.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/animate.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/pager.css}" rel="stylesheet"/>
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+     <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>房源管理</h5>
+                    </div>
+                  <div class="ibox-content" style="overflow:hidden;zoom:1;">
+                     	<div role="form" class="form-inline" style="float:left">
+                            <div class="form-group">
+                                <label for="countryQuery" class="sr-only" style="width:auto !important;height:100% !important; display:initial;position:inherit;padding:0;margin-left:5px;">国家：</label>
+                                <select id="countryQuery" class="form-control">
+                                	<option th:each="country,status:${lstCountry}" th:value="${country.code}" th:text="${country.chineseName}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="communityNameQuery" class="sr-only" style="width:auto !important;height:100% !important; display:initial;position:inherit;padding:0;margin-left:5px;">房源名称：</label>
+                                <input id="communityNameQuery" type="text" placeholder="输入社区名称查找" class="form-control w_duan" >
+                            </div>
+                            <button class="btn btn-white" type="button" style="margin-bottom:2px;" onclick="">查找</button>
+                        </div>
+						<button type="button" class="btn btn-primary" style="float:right;margin-right:10px;" onclick="deleteCommunity();">删除</button>
+						<a th:href="@{/community/initInsert}">
+							<button type="button" class="btn btn-primary" style="float:right;margin-right:10px;">新增</button>
+						</a>
+                  </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table class="footable table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="5%"><input id="all" type="checkbox"> 全选</th>
+                                        <th width="20%">房源名称</th>
+                                        <th width="5%">国家</th>
+                                        <th width="10%">城市</th>
+                                        <th width="10%">城区</th>
+                                        <th width="10%">房屋类型</th>
+                                        <th width="10%">房源</th>
+                                        <th width="10%">供应商</th>
+                                        <th width="15%">地址</th>
+                                        <th width="5%">状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     <tr th:each="community,status:${page }">
+                                         <td><input type="checkbox"  class="i-checks" name="box" th:value="${community.id }"></td>
+                                         <td><a th:href="@{/community/initUpdate(id=${community.id })}"  th:text="${community.name }"></a></td>
+                                         <td th:text="${community.countryName }"></td>
+                                         <td th:text="${community.cityName }"></td>
+                                         <td th:text="${community.districtName }"></td>
+                                         <td th:text="${community.type }"></td>
+                                         <td th:text="${community.sourceType }"></td>
+                                         <td th:text="${community.supplierName }"></td>
+                                         <td th:text="${community.address }"></td>
+                                         <td th:switch="${community.status}">
+                                         	<span th:case="10">新建</span>
+                                         	<span th:case="20">已上架</span>
+                                         	<span th:case="30">已下架</span>
+                                         </td>
+                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+							<ul class="pagination" id="page"></ul>
+							<div class="pageJump">
+								<span>跳转到</span><input type="text" id="jumpInput" style="width: 40px;padding: 5px;margin-left: 3px;"/> <span>页</span>
+								<button type="button" class="button">确定</button>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+      </div>
+</body>
+<script th:src="@{/static/js/jquery.min-2.1.4.js}"></script>
+<script th:src="@{/static/js/bootstrap.min-3.3.6.js}"></script>
+<script th:src="@{/static/js/common.js}"></script>
+<script th:src="@{/static/js/pager.js}"></script>
+<script th:src="@{/static/js/community/community.js}"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+
+$().ready(function(){
+	Page({
+		num:[[${page.pages}]],
+		startnum:[[${page.pageNum}]],
+		elem:$('#page'),
+		callback:function(n){
+			query(n);
+		}
+	});
+	$(".jumpBtn").on("click", function(){query($("#jumpInput").val())});
+});
+           
+function query(page){
+	location.href="[[@{/community/list/}]]"+page+"?name="+$("#communityNameQuery").val();
+}
+
+/*]]>*/
+</script>
+</html>
