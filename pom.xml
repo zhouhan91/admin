@@ -4,7 +4,10 @@
 	<groupId>com.wemeCity</groupId>
 	<artifactId>admin</artifactId>
 	<name>admin</name>
-	<packaging>war</packaging>
+    <modules>
+        <module>mybatisGenerator</module>
+    </modules>
+    <packaging>pom</packaging>
 	<version>1.0.0</version>
 
 	<repositories>

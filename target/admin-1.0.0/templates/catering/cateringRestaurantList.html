@@ -1,126 +1,183 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>店铺管理</title>
-    <link th:href="@{/static/css/bootstrap.min-3.3.6.css}" rel="stylesheet"/>
-    <link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet"/>
-    <link th:href="@{/static/css/style.css}" rel="stylesheet"/>
-    <link th:href="@{/static/css/animate.css}" rel="stylesheet"/>
-    <link th:href="@{/static/css/pager.css}" rel="stylesheet"/>
+    <html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>店铺管理</title>
+        <link th:href="@{/static/css/bootstrap.min-3.3.6.css}" rel="stylesheet"/>
+        <link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet"/>
+        <link th:href="@{/static/css/style.css}" rel="stylesheet"/>
+        <link th:href="@{/static/css/animate.css}" rel="stylesheet"/>
+        <link th:href="@{/static/css/pager.css}" rel="stylesheet"/>
+
+    </head>
     <style type="text/css">
         th,td{
             text-align: center;
         }
     </style>
-</head>
-
 <body class="gray-bg">
-    <div class="wrapper wrapper-content animated fadeInRight">
-     <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>店铺管理</h5>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>店铺管理</h5>
+                </div>
+                <div class="ibox-content" style="overflow:hidden;zoom:1;">
+                    <div role="form" class="form-inline queryRestaurant" style="float:left">
+                        <div class="form-group">
+                            <!--<label for="queryRestaurantName" class="sr-only" style="width:auto !important;height:100% !important; display:initial;position:inherit;padding:0;margin-left:5px;">商户名称：</label>-->
+                            <input id="queryRestaurantName" th:value="${name}" type="text" placeholder="输入商户名称" class="form-control w_duan" >
+                        </div>
+                        <div class="form-group">
+                            <input id="queryRestaurantPhone" th:value="${phone}" type="text" placeholder="输入商户手机号" class="form-control w_duan" >
+                        </div>
+                        <div class="form-group">
+                            <select id="queryRestaurantStatus" class="form-control" placeholder="商户状态">
+                                <option value="" th:selected="(${status}=='')">商户状态</option>
+                                <option value="10" th:selected="(${status}=='10')">未审核</option>
+                                <option value="20" th:selected="(${status}=='20')">已审核</option>
+                                <option value="30" th:selected="(${status}=='100')">未通过</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="countryQuery" class="sr-only" style="width:auto !important;height:100% !important; display:initial;position:inherit;padding:0;margin-left:5px;">国家：</label>
+                            <select id="countryQuery" class="form-control">
+                                <option th:each="country,status:${lstCountry}" th:value="${country.code}" th:text="${country.chineseName}" th:selected="(${country.code}==${countryCode})"></option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" type="button" style="margin-bottom:2px;" onclick="query(1)">查找</button>
+                        <button class="btn btn-white" type="button" style="margin-bottom:2px;" onclick="clearQuery()">清除</button>
                     </div>
-                  <div class="ibox-content" style="overflow:hidden;zoom:1;">
-                     	<div role="form" class="form-inline" style="float:left">
-                            <div class="form-group">
-                                <label for="statusQuery" class="sr-only" style="width:auto !important;height:100% !important; display:initial;position:inherit;padding:0;margin-left:5px;">状态：</label>
-                                <select id="statusQuery" class="form-control">
-                                	<option value="">-- 全部 --</option>
-                                	<option value="10">-- 未开通 --</option>
-                                	<option value="20">-- 已开通 --</option>
-                                	<option value="100">-- 已关闭 --</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="nameQuery" class="sr-only" style="width:auto !important;height:100% !important; display:initial;position:inherit;padding:0;margin-left:5px;">店铺名称：</label>
-                                <input id="nameQuery" type="text" placeholder="输入店铺名称查找" class="form-control w_duan" >
-                            </div>
-                            <button class="btn btn-white" type="button" style="margin-bottom:2px;" onclick="">查找</button>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="footable table table-striped">
+                            <thead>
+                            <tr>
+                                <th width="5%"><input id="all" type="checkbox"> 全选</th>
+                                <th width="10%">店铺名称</th>
+                                <th width="10%">店主电话</th>
+                                <th width="10%">国家</th>
+                                <th width="10%">城市</th>
+                                <th width="20%">详细地址</th>
+                                <th width="15%">申请时间</th>
+                                <th width="20%">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody class="restaurantList">
+                            <tr th:each="restaurant:${page }">
+                                <td><input type="checkbox"  class="i-checks" name="box" th:value="${restaurant.id }"></td>
+                                <td th:text="${restaurant.name }"></td>
+                                <td th:text="${restaurant.phone }"></td>
+                                <td th:text="${restaurant.countryName }"></td>
+                                <td th:text="${restaurant.cityName }"></td>
+                                <td th:text="${restaurant.address }"></td>
+                                <td th:text="${restaurant.createTime}"></td>
+                                <td th:switch="${restaurant.status}">
+                                    <p th:case="10">
+                                        <button class="btn-sm btn-success "  onclick="auditPass(this)">通过</button>
+                                        <button class="btn-sm btn-danger " onclick="auditDeny(this)">驳回</button>
+                                    </p>
+                                    <p th:case="20">
+                                        <a class="btn-sm btn-primary" th:href="@{/catering/restaurant/initUpdate(id=${restaurant.id })}">查看详情</a>
+                                    </p>
+                                    <p th:case="100" class="text-danger">
+                                        未通过审核
+                                    </p>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <ul class="pagination" id="page"></ul>
+                        <div class="pageJump">
+                            <span>跳转到</span><input type="text" id="jumpInput" style="width: 40px;padding: 5px;margin-left: 3px;"/> <span>页</span>
+                            <button type="button" class="button">确定</button>
                         </div>
-                  </div>
-                    <div class="ibox-content">
-                        <div class="table-responsive">
-                            <table class="footable table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th width="10%"><input id="all" type="checkbox"> 全选</th>
-                                        <th width="20%">店铺名称</th>
-                                        <th width="10%">分类</th>
-                                        <th width="10%">子分类</th>
-                                        <th width="10%">城市</th>
-                                        <th width="10%">评分</th>
-                                        <th width="10%">开放</th>
-                                        <th width="10%">状态</th>
-                                        <th width="10%">操作</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                     <tr th:each="restaurant:${page }">
-                                         <td><input type="checkbox"  class="i-checks" name="box" th:value="${restaurant.id }"></td>
-                                         <td><a href="#"  th:text="${restaurant.name }"></a></td>
-                                         <td th:text="${restaurant.parentCategoryCode }"></td>
-                                         <td th:text="${restaurant.categoryCode }"></td>
-                                         <td th:text="${restaurant.cityName }"></td>
-                                         <td th:text="${restaurant.interestLevel }"></td>
-                                         <td th:switch="${restaurant.openFlag}">
-                                         	<span th:case="Y">是</span>
-                                         	<span th:case="N">否</span>
-                                         	<span th:case="">否</span>
-                                         </td>
-                                         <td th:switch="${restaurant.status}">
-                                         	<span th:case="10">未通过</span>
-                                         	<span th:case="20">已通过</span>
-                                         	<span th:case="100">已关闭</span>
-                                         </td>
-                                         <td><input type="button" onclick="" ></td>
-                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div>
-							<ul class="pagination" id="page"></ul>
-							<div class="pageJump">
-								<span>跳转到</span><input type="text" id="jumpInput" style="width: 40px;padding: 5px;margin-left: 3px;"/> <span>页</span>
-								<button type="button" class="button">确定</button>
-							</div>
-						</div>
                     </div>
                 </div>
             </div>
-
         </div>
-      </div>
+
+    </div>
+</div>
+
 </body>
 <script th:src="@{/static/js/jquery.min-2.1.4.js}"></script>
 <script th:src="@{/static/js/bootstrap.min-3.3.6.js}"></script>
 <script th:src="@{/static/js/common.js}"></script>
 <script th:src="@{/static/js/pager.js}"></script>
-<script th:src="@{/static/js/community/community.js}"></script>
 <script type="text/javascript">
-/*<![CDATA[*/
+    /*<![CDATA[*/
 
-$().ready(function(){
-	Page({
-		num:[[${page.pages}]],
-		startnum:[[${page.pageNum}]],
-		elem:$('#page'),
-		callback:function(n){
-			query(n);
-		}
-	});
-	$(".jumpBtn").on("click", function(){query($("#jumpInput").val())});
-});
-           
-function query(page){
-	location.href="[[@{/community/list/}]]"+page+"?name="+$("#communityNameQuery").val();
-}
+    $().ready(function(){
+        Page({
+            num:[[${page.pages}]],
+            startnum:[[${page.pageNum}]],
+            elem:$('#page'),
+            callback:function(n){
+                query(n);
+            }
+        });
+        $(".jumpBtn").on("click", function(){query($("#jumpInput").val())});
+    });
 
-/*]]>*/
+    function query(page){
+        var name  = $.trim($('#queryRestaurantName').val());
+        var phone = $.trim($('#queryRestaurantPhone').val());
+        var status = $.trim($('#queryRestaurantStatus option:selected').val());
+        var countryCode = $.trim($('#countryQuery option:selected').val());
+        location.href="[[@{/catering/restaurant/list/}]]"+page+"?name="+name+"&phone="+phone+"&status="+status+"&countryCode="+countryCode;
+    }
+
+    function auditPass(e) {
+        var restaurantId = $(e).parent().siblings(":first").children("input").val();
+        console.log(restaurantId);
+        if(confirm("是否确定通过审核？")) {
+            $.get("[[@{/catering/restaurant/auditPass/}]]" + restaurantId, function (data) {
+                if (data.resultCode == "999999") {
+                    alert("操作成功！");
+                    location.reload();
+                } else {
+                    alert("操作失败！");
+                    location.reload();
+                }
+            })
+        }else {
+            return false;
+        }
+    }
+
+    function auditDeny(e){
+        var restaurantId = $(e).parent().siblings(":first").children("input").val();
+        console.log(restaurantId);
+        if(confirm("是否确认驳回请求？")) {
+            $.get("[[@{/catering/restaurant/auditDeny/}]]" + restaurantId, function (data) {
+                if (data.resultCode == "999999") {
+                    alert("操作成功！");
+                    location.reload();
+                } else {
+                    alert("操作失败！");
+                    location.reload();
+                }
+            })
+        }else {
+            return false;
+        }
+    }
+
+    function clearQuery() {
+        $("#queryRestaurant input").val("");
+        $("#queryRestaurant select option:selected").removeAttr("selected");
+    }
+
+
+    /*]]>*/
 </script>
 </html>

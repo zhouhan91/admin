@@ -40,13 +40,16 @@
 		<result column="recommend_flag" property="recommendFlag" jdbcType="VARCHAR" />
 		<result column="recommend_sort_num" property="recommendSortNum" jdbcType="INTEGER" />
 		<result column="sort_num" property="sortNum" jdbcType="INTEGER" />
+		<result column="distribution_remark" property="distributionRemark" jdbcType="VARCHAR" />
 		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="pause_flag" property="pauseFlag" jdbcType="VARCHAR" />
 		<result column="open_flag" property="openFlag" jdbcType="VARCHAR" />
 		<result column="is_deleted" property="isDeleted" jdbcType="VARCHAR" />
 		<result column="create_by" property="createBy" jdbcType="BIGINT" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 		<result column="modify_by" property="modifyBy" jdbcType="BIGINT" />
 		<result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="distance" property="distance" jdbcType="DOUBLE" />
 	</resultMap>
 
 	<insert id="insertCateringRestaurant" parameterType="com.wemeCity.admin.catering.model.CateringRestaurant">
@@ -86,8 +89,10 @@
 				key_words,
 				recommend_flag,
 				recommend_sort_num,
+				distribution_remark,
 				sort_num,
 				status,
+				pause_flag,
 				open_flag,
 				is_deleted,
 				create_by,
@@ -129,8 +134,10 @@
 				#{keyWords},
 				#{recommendFlag},
 				#{recommendSortNum},
+				#{distributionRemark},
 				#{sortNum},
 				#{status},
+				#{pauseFlag},
 				#{openFlag},
 				#{isDeleted},
 				#{createBy},
@@ -253,11 +260,17 @@
 		<if test="recommendSortNum !=null">
 			, recommend_sort_num=#{recommendSortNum}
 		</if>
+		<if test="distributionRemark !=null">
+			, distribution_remark=#{distributionRemark}
+		</if>
 		<if test="sortNum !=null">
 			, sort_num=#{sortNum}
 		</if>
 		<if test="status !=null">
 			, status=#{status}
+		</if>
+		<if test="pauseFlag !=null">
+			, pause_flag=#{pauseFlag}
 		</if>
 		<if test="openFlag !=null">
 			, open_flag=#{openFlag}
@@ -282,7 +295,14 @@
 	</select>
 
 	<select id="queryCateringRestaurantList" parameterType="map" resultMap="cateringRestaurant">
-		SELECT * FROM catering_restaurant WHERE 1=1 
+		SELECT * 
+		<if test="myLongitude != null">
+			, (st_distance(point(longitude, latitude),point(#{myLongitude},#{myLatitude}) ) *111195) AS distance
+		</if>
+		<if test="myLongitude == null">
+			, 0 AS distance
+		</if>
+		FROM catering_restaurant WHERE 1=1 
 		<if test="id !=null">
 			AND id=#{id}
 		</if>
@@ -322,11 +342,17 @@
 		<if test="cityName !=null">
 			AND city_name=#{cityName}
 		</if>
+		<if test="cityNameLike !=null">
+			AND city_name like CONCAT('%',#{cityNameLike},'%')
+		</if>
 		<if test="districtCode !=null">
 			AND district_code=#{districtCode}
 		</if>
 		<if test="districtName !=null">
 			AND district_name=#{districtName}
+		</if>
+		<if test="districtNameLike !=null">
+			AND district_name like CONCAT('%',#{districtNameLike},'%')
 		</if>
 		<if test="address !=null">
 			AND address=#{address}
@@ -385,11 +411,17 @@
 		<if test="recommendSortNum !=null">
 			AND recommend_sort_num=#{recommendSortNum}
 		</if>
+		<if test="distributionRemark !=null">
+			AND distribution_remark=#{distributionRemark}
+		</if>
 		<if test="sortNum !=null">
 			AND sort_num=#{sortNum}
 		</if>
 		<if test="status !=null">
 			AND status=#{status}
+		</if>
+		<if test="pauseFlag !=null">
+			AND pause_flag=#{pauseFlag}
 		</if>
 		<if test="openFlag !=null">
 			AND open_flag=#{openFlag}
@@ -518,11 +550,17 @@
 		<if test="recommendSortNum !=null">
 			AND recommend_sort_num=#{recommendSortNum}
 		</if>
+		<if test="distributionRemark !=null">
+			AND distribution_remark=#{distributionRemark}
+		</if>
 		<if test="sortNum !=null">
 			AND sort_num=#{sortNum}
 		</if>
 		<if test="status !=null">
 			AND status=#{status}
+		</if>
+		<if test="pauseFlag !=null">
+			AND pause_flag=#{pauseFlag}
 		</if>
 		<if test="openFlag !=null">
 			AND open_flag=#{openFlag}

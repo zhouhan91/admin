@@ -8,11 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="9dd173f7-6b75-49ff-86c7-03d10b3573c7" name="Default" comment="餐饮订单添加配送说明字段">
       <change beforePath="" afterPath="$PROJECT_DIR$/admin.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mapper/admin/catering" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringCourier.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringOrder.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringOrderDetail.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringRestaurant.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/wemeCity/admin/resultmap" />
       <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/wemeCity/admin/resultmap/ResultMapTest.java" />
       <change beforePath="" afterPath="$PROJECT_DIR$/../web/src/test/java/com/wemeCity/web/catering" />
@@ -22,16 +17,22 @@
       <change beforePath="$PROJECT_DIR$/.classpath" afterPath="$PROJECT_DIR$/.classpath" />
       <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" afterPath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" />
       <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wemeCity/IBatisFileBuilder.java" afterPath="$PROJECT_DIR$/src/main/java/com/wemeCity/IBatisFileBuilder.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/spring/dataSource.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring/dataSource.xml" />
       <change beforePath="$PROJECT_DIR$/target" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../web/.classpath" afterPath="$PROJECT_DIR$/../web/.classpath" />
       <change beforePath="$PROJECT_DIR$/../web/.settings/org.eclipse.wst.common.component" afterPath="$PROJECT_DIR$/../web/.settings/org.eclipse.wst.common.component" />
       <change beforePath="$PROJECT_DIR$/../web/.settings/org.eclipse.wst.common.project.facet.core.xml" afterPath="$PROJECT_DIR$/../web/.settings/org.eclipse.wst.common.project.facet.core.xml" />
+      <change beforePath="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/controller/CateringRestaurantController.java" afterPath="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/controller/CateringRestaurantController.java" />
+      <change beforePath="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/service/impl/CateringOrderServiceImpl.java" afterPath="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/service/impl/CateringOrderServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/user/model/Coupon.java" afterPath="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/user/model/Coupon.java" />
       <change beforePath="$PROJECT_DIR$/../web/src/main/resources/spring/dataSource.xml" afterPath="$PROJECT_DIR$/../web/src/main/resources/spring/dataSource.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/../web/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/mybatisGenerator/target/" />
+    <ignored path="$PROJECT_DIR$/generator/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,91 +42,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cateringOrderEdit.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cateringOrderEdit.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringOrderEdit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cateringRestaurantReviewList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringRestaurantReviewList.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="53" column="62" lean-forward="false" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CateringRestaurant.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringRestaurant.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="113" column="32" lean-forward="false" selection-start-line="113" selection-start-column="19" selection-end-line="113" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CateringOrder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/model/CateringOrder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="99" column="42" lean-forward="false" selection-start-line="99" selection-start-column="42" selection-end-line="99" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="servlet-context.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../web/src/main/resources/spring/servlet-context.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CateringRestaurantController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/controller/CateringRestaurantController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="137" column="55" lean-forward="false" selection-start-line="137" selection-start-column="40" selection-end-line="137" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CateringRestaurant.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/model/CateringRestaurant.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1182">
-              <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cateringOrderList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringOrderList.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="12" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="16" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cateringRestaurantList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringRestaurantList.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+            <state relative-caret-position="736">
+              <caret line="80" column="79" lean-forward="false" selection-start-line="80" selection-start-column="68" selection-end-line="80" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -134,8 +55,38 @@
       <file leaf-file-name="CateringOrderController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/controller/CateringOrderController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="73" column="22" lean-forward="false" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
+            <state relative-caret-position="138">
+              <caret line="91" column="31" lean-forward="false" selection-start-line="91" selection-start-column="31" selection-end-line="91" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CateringOrderDetail.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringOrderDetail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="37" column="28" lean-forward="false" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CateringCourier.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringCourier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-207">
+              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CateringOrder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringOrder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="429">
+              <caret line="57" column="41" lean-forward="false" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -152,16 +103,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>readCateringOrder</find>
-      <find>备注</find>
-      <find>orderPaid</find>
-      <find>setStatus</find>
-      <find>today</find>
-      <find>modifyTime</find>
-      <find>Time</find>
-      <find>TodayStatisticsInfo</find>
-      <find>yesterda</find>
-      <find>com.wemeCity.web</find>
       <find>register</find>
       <find>取消原因</find>
       <find>queryCateringCategoryList</find>
@@ -169,11 +110,9 @@
       <find>cour</find>
       <find>queryTimeStart</find>
       <find>queryTimeEnd</find>
-      <find>quer</find>
       <find>district</find>
       <find>crea</find>
       <find>cateringOrder</find>
-      <find>pay</find>
       <find>modi</find>
       <find>status</find>
       <find>Session</find>
@@ -182,11 +121,23 @@
       <find>update</find>
       <find>setPayS</find>
       <find>setPaySt</find>
+      <find>s</find>
+      <find>quer</find>
+      <find>coupon</find>
+      <find>pay</find>
+      <find>read</find>
+      <find>address</find>
+      <find>couponN</find>
+      <find>stat</find>
+      <find>if</find>
+      <find>佣金</find>
+      <find>com.wemeCity.web</find>
+      <find>amount</find>
     </findStrings>
     <replaceStrings>
-      <replace>com.wemeCity.admin</replace>
       <replace>queryDateEnd</replace>
       <replace>and</replace>
+      <replace>com.wemeCity.admin</replace>
     </replaceStrings>
     <dirStrings>
       <dir>G:\project\web</dir>
@@ -199,6 +150,7 @@
       <dir>G:\project\web\src\main\java\com\wemeCity\web\catering\controller</dir>
       <dir>G:\project\admin\src\main\java\com\wemeCity\admin</dir>
       <dir>G:\project\web\src\main\java\com\wemeCity\web\catering</dir>
+      <dir>G:\project\web\src\main</dir>
     </dirStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -209,24 +161,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/dto/CateringOrderVO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringOrderDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/mapper/CateringOrderCustomMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/mapper/CateringOrderCustom.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/impl/CateringOrderServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/CateringOrderService.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/wemeCity/admin/resultmap/ResultMapTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/mapper/CateringOrderMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/mapper/CateringOrder.xml" />
-        <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/model/CateringContacts.java" />
-        <option value="$PROJECT_DIR$/../web/src/main/resources/mapper/web/catering/CateringContacts.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/ymls/config.yml" />
-        <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/dto/CateringPayDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/impl/CateringOrderDetailServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/CateringOrderDetailService.java" />
-        <option value="$PROJECT_DIR$/../web/src/main/resources/mapper/web/catering/CateringOrder.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/templates/community/communityList.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringCourier.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/mapper/CateringCourierMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/exception/CateringCourierException.java" />
@@ -234,32 +168,50 @@
         <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/dto/CourierSaveDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/CateringCourierService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/impl/CateringCourierServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/templates/frame.html" />
-        <option value="$PROJECT_DIR$/../web/src/main/resources/spring/dataSource.xml" />
-        <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/service/impl/CateringOrderServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/catering/cateringOrder.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/dto/CateringOrderDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/controller/CateringOrderController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringOrder.xml" />
         <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/controller/CateringOrderController.java" />
         <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/mapper/CateringOrderDetailMapper.java" />
         <option value="$PROJECT_DIR$/../web/src/main/resources/mapper/web/catering/CateringOrderDetail.xml" />
-        <option value="$PROJECT_DIR$/../web/src/test/java/com/wemeCity/web/catering/controller/CateringControllerTester.java" />
         <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/controller/CateringGoodsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringRestaurant.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/common/enums/RequestResultEnum.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/controller/CateringRestaurantController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringOrder.java" />
         <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/utils/CateringConstants.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/utils/CateringConstants.java" />
         <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/common/utils/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/common/utils/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/templates/catering/cateringOrderList.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/templates/catering/cateringOrderEdit.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/templates/catering/cateringRestaurantList.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/templates/catering/cateringRestaurantReviewList.html" />
         <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/model/CateringOrder.java" />
+        <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/service/impl/CateringOrderServiceImpl.java" />
+        <option value="$PROJECT_DIR$/../web/src/test/java/com/wemeCity/web/catering/controller/CateringControllerTester.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/admin/community/Community.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/community/controller/CommunityController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/templates/community/communityList.html" />
+        <option value="$PROJECT_DIR$/../web/src/main/resources/spring/dataSource.xml" />
         <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/controller/CateringRestaurantController.java" />
+        <option value="$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/user/model/Coupon.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/controller/CateringOrderController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/templates/catering/cateringOrderList.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/templates/frame.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/templates/catering/cateringRestaurantReviewList.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringDiscount.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/mapper/CateringDiscountMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/exception/CateringDiscountException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/CateringDiscountService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/impl/CateringDiscountServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringDiscount.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringRestaurant.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringRestaurant.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringManager.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringGoods.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringComment.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringCommentImg.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringCommentImg.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/dataSource.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/templates/catering/cateringRestaurantEdit.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/controller/CateringRestaurantController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/templates/catering/cateringRestaurantList.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/templates/catering/cateringOrderEdit.html" />
       </list>
     </option>
   </component>
@@ -308,7 +260,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1040" />
@@ -348,200 +300,46 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="wemeCity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="wemeCity" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="wemeCity" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="catering" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="wemeCity" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="catering" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="catering" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="spring" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="wemeCity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="wemeCity" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="wemeCity" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="catering" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="wemeCity" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="catering" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.applicationServers" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../wechat" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="G:/project相关资料/myBatis/generator-mybatis-generator-1.3.6/core" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.wemeCity.admin.catering.dto" />
+      <recent name="com.wemeCity.admin.catering.model" />
       <recent name="com.wemeCity.admin.catering.service.impl" />
       <recent name="com.wemeCity.admin.catering.service" />
       <recent name="com.wemeCity.admin.catering.exception" />
       <recent name="com.wemeCity.admin.catering.mapper" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\project\admin\src\main\resources\mapper\admin\catering" />
+      <recent name="G:\project\admin\src\main\java\com\wemeCity\admin\catering\model" />
+      <recent name="G:\project\admin\src\main\webapp\templates\catering" />
       <recent name="G:\project\admin\src\main\webapp\static\js" />
       <recent name="G:\project\admin\src\main\webapp\static\css" />
-      <recent name="G:\project\admin\src\main\webapp\templates\catering" />
-      <recent name="G:\project\admin\src\main\resources\mapper\admin\catering" />
-      <recent name="G:\project\admin\src\main\webapp\static\js\catering" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -556,7 +354,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CateringControllerTester.testRestaurantInfo">
+  <component name="RunManager" selected="JUnit.CateringControllerTester.testPay">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -760,9 +558,10 @@
       <listeners />
     </configuration>
     <configuration name="8080" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.65" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
-        <artifact name="web:war exploded">
+        <artifact name="admin:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/" />
           </settings>
@@ -827,7 +626,7 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="web:war exploded" />
+          <artifact name="admin:war exploded" />
         </option>
       </method>
     </configuration>
@@ -917,8 +716,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.CateringControllerTester.testRestaurantInfo" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.CateringControllerTester.testPay" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.CateringControllerTester.testPay" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.CateringControllerTester.testRestaurantInfo" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.CateringControllerTester.testQueryTodayStatisticsInfo" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.All in admin (1)" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.All in admin" />
@@ -943,10 +742,6 @@
           <option name="myVcsRoot" value="G:\project\web" />
           <option name="myCopyRoot" value="G:\project\web" />
         </SvnCopyRootSimple>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="G:\project\wechat" />
-          <option name="myCopyRoot" value="G:\project\wechat" />
-        </SvnCopyRootSimple>
       </list>
     </option>
     <option name="myMoreRealMappingRoots">
@@ -958,10 +753,6 @@
         <SvnCopyRootSimple>
           <option name="myVcsRoot" value="G:\project\web" />
           <option name="myCopyRoot" value="G:\project\web" />
-        </SvnCopyRootSimple>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="G:\project\wechat" />
-          <option name="myCopyRoot" value="G:\project\wechat" />
         </SvnCopyRootSimple>
       </list>
     </option>
@@ -986,7 +777,10 @@
       <workItem from="1520663035961" duration="78594000" />
       <workItem from="1520990407568" duration="35685000" />
       <workItem from="1521080058199" duration="31962000" />
-      <workItem from="1521162677124" duration="44839000" />
+      <workItem from="1521162677124" duration="46115000" />
+      <workItem from="1521710843295" duration="7609000" />
+      <workItem from="1521804107765" duration="3230000" />
+      <workItem from="1522045977225" duration="74852000" />
     </task>
     <task id="LOCAL-00001" summary="餐饮订单添加配送说明字段，订单联系人数据由10条改为5条">
       <created>1520474411008</created>
@@ -1093,15 +887,36 @@
       <option name="project" value="LOCAL" />
       <updated>1521535219825</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016">
+      <created>1522649308074</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1522649308074</updated>
+    </task>
+    <task id="LOCAL-00017" summary="餐饮订单添加配送说明字段">
+      <created>1522649579233</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1522649579233</updated>
+    </task>
+    <task id="LOCAL-00018">
+      <created>1522658184961</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1522658184961</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CateringControllerTester_testQueryTodayStatisticsInfo - 2018.03.14 at 20h 38m 16s.xml">
-      <configuration name="CateringControllerTester.testQueryTodayStatisticsInfo" configurationId="JUnit" />
+    <history-entry file="CateringControllerTester_testPay - 2018.03.22 at 17h 34m 52s.xml">
+      <configuration name="CateringControllerTester.testPay" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CateringControllerTester_testQueryTodayStatisticsInfo - 2018.03.14 at 20h 42m 10s.xml">
-      <configuration name="CateringControllerTester.testQueryTodayStatisticsInfo" configurationId="JUnit" />
+    <history-entry file="CateringControllerTester_testPay - 2018.03.22 at 17h 36m 03s.xml">
+      <configuration name="CateringControllerTester.testPay" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CateringControllerTester_testQueryTodayStatisticsInfo - 2018.03.14 at 20h 43m 06s.xml">
       <configuration name="CateringControllerTester.testQueryTodayStatisticsInfo" configurationId="JUnit" />
@@ -1129,7 +944,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="296148000" />
+    <option name="totallyTimeSpent" value="383115000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1141,12 +956,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28430295" sideWeight="0.5127932" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17343578" sideWeight="0.48933902" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17343578" sideWeight="0.48933902" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16311301" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1154,20 +968,19 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31613612" sideWeight="0.48720682" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38748628" sideWeight="0.48720682" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17343578" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17343578" sideWeight="0.4978678" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23667377" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24466951" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1175,6 +988,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1226,192 +1040,64 @@
     <MESSAGE value="修正满减折扣bug" />
     <MESSAGE value="添加餐饮模块" />
     <MESSAGE value="餐饮订单添加配送说明字段" />
-    <option name="LAST_COMMIT_MESSAGE" value="餐饮订单添加配送说明字段" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="74" />
+      <option name="time" value="91" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/frame.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/CateringRestaurantService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="72" column="96" lean-forward="false" selection-start-line="72" selection-start-column="86" selection-end-line="72" selection-end-column="96" />
+        <state relative-caret-position="414">
+          <caret line="51" column="23" lean-forward="false" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/phrase.rnc">
+    <entry file="file://$PROJECT_DIR$/../web/src/main/resources/mapper/web/catering/CateringRestaurant.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="343" column="16" lean-forward="false" selection-start-line="343" selection-start-column="16" selection-end-line="343" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/community/controller/CommunityController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="65" column="30" lean-forward="false" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/controller/CateringManagerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="51" column="63" lean-forward="true" selection-start-line="51" selection-start-column="63" selection-end-line="51" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/resources/mapper/web/catering/CateringOrder.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5608">
-          <caret line="95" column="34" lean-forward="false" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
+        <state relative-caret-position="163">
+          <caret line="292" column="20" lean-forward="false" selection-start-line="292" selection-start-column="16" selection-end-line="292" selection-end-column="20" />
           <folding>
-            <marker date="1520923017918" expanded="true" signature="3645:5222" ph="INSERT INTO CATERING_ORDER... " />
-            <marker date="1520923017918" expanded="true" signature="5295:5352" ph="SELECT LAST_... CATERING_ORDER" />
-            <marker date="1520923017918" expanded="true" signature="5468:5525" ph="UPDATE catering_order... " />
-            <marker date="1520923017918" expanded="true" signature="5601:8561" ph="UPDATE catering_order... " />
-            <marker date="1520923017918" expanded="true" signature="8666:8709" ph="SELECT * FRO... catering_order" />
-            <marker date="1520923017918" expanded="true" signature="16041:16577" ph="select count... catering_order" />
-            <marker date="1520923017918" expanded="true" signature="17003:17279" ph="SELECT count... catering_order" />
-            <marker date="1520923017918" expanded="true" signature="17963:18498" ph="SELECT count... catering_order" />
+            <marker date="1520495524052" expanded="true" signature="3878:5537" ph="INSERT INTO CATERING_RESTAURANT... " />
+            <marker date="1520495524052" expanded="true" signature="5610:5672" ph="SELECT LAST_... CATERING_RESTAURANT" />
+            <marker date="1520495524052" expanded="true" signature="5793:5855" ph="UPDATE catering_restaurant... " />
+            <marker date="1520495524052" expanded="true" signature="5936:9049" ph="UPDATE catering_restaurant... " />
+            <marker date="1520495524052" expanded="true" signature="9164:9212" ph="SELECT * FRO... catering_restaurant" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/dto/CateringOrderSettlingDTO.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="181">
+          <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/model/CateringGoods.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/mapper/CateringRestaurantMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="59" column="39" lean-forward="false" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="39" />
+        <state relative-caret-position="181">
+          <caret line="54" column="45" lean-forward="false" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/resources/mapper/web/catering/CateringGoodsCategory.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/impl/CateringRestaurantServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1519811084072" expanded="true" signature="1416:1869" ph="INSERT INTO CATERING_GOODS_CATEGORY... " />
-            <marker date="1519811084072" expanded="true" signature="1942:2008" ph="SELECT LAST_... CATERING_GOODS_CATEGORY" />
-            <marker date="1519811084072" expanded="true" signature="2132:2198" ph="UPDATE Catering_goods_category... " />
-            <marker date="1519811084072" expanded="true" signature="2282:3057" ph="UPDATE Catering_goods_category... " />
-            <marker date="1519811084072" expanded="true" signature="3178:3230" ph="SELECT * FRO... Catering_goods_category" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/resources/mapper/web/catering/CateringGoods.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6379">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1519811084061" expanded="true" signature="2047:2850" ph="INSERT INTO CATERING_GOODS... " />
-            <marker date="1519811084061" expanded="true" signature="2923:2980" ph="SELECT LAST_... CATERING_GOODS" />
-            <marker date="1519811084061" expanded="true" signature="3096:3153" ph="UPDATE catering_goods... " />
-            <marker date="1519811084061" expanded="true" signature="3229:4668" ph="UPDATE catering_goods... " />
-            <marker date="1519811084061" expanded="true" signature="4773:4816" ph="SELECT * FRO... catering_goods" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/mapper/CateringGoodsMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        <state relative-caret-position="219">
+          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/mapper/CateringOrderDetailMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/community/communityEdit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="83" column="96" lean-forward="false" selection-start-line="83" selection-start-column="96" selection-end-line="83" selection-end-column="96" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/resources/mapper/web/catering/CateringOrderDetail.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="206" column="37" lean-forward="false" selection-start-line="206" selection-start-column="37" selection-end-line="206" selection-end-column="37" />
-          <folding>
-            <marker date="1521183579804" expanded="true" signature="1474:1955" ph="INSERT INTO CATERING_ORDER_DETAIL... " />
-            <marker date="1521183579804" expanded="true" signature="2028:2092" ph="SELECT LAST_... CATERING_ORDER_DETAIL" />
-            <marker date="1521183579804" expanded="true" signature="2214:2278" ph="UPDATE catering_order_detail... " />
-            <marker date="1521183579804" expanded="true" signature="2360:3195" ph="UPDATE catering_order_detail... " />
-            <marker date="1521183579804" expanded="true" signature="3312:3362" ph="SELECT * FRO... catering_order_detail" />
-            <marker date="1521183579804" expanded="true" signature="5819:6168" ph="select&gt; &lt;res... " />
-            <marker date="1521183579804" expanded="true" signature="6168:6267" ph="select id=&quot;q... " />
-            <marker date="1521183579804" expanded="true" signature="6270:6832" ph="select b.id goods_id" />
-            <marker date="1521183579804" expanded="true" signature="6270:6836" ph="select b.id goods_id" />
-            <marker date="1521183579804" expanded="true" signature="6337:6710" ph="select goods... catering_order_detail" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/resources/spring/dataSource.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/test/java/com/wemeCity/web/catering/controller/CateringControllerTester.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/target/classes/mapper/web/catering/CateringOrderDetail.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="175" column="25" lean-forward="false" selection-start-line="175" selection-start-column="18" selection-end-line="175" selection-end-column="25" />
-          <folding>
-            <marker date="1521184583764" expanded="true" signature="1474:1955" ph="INSERT INTO CATERING_ORDER_DETAIL... " />
-            <marker date="1521184583764" expanded="true" signature="2028:2092" ph="SELECT LAST_... CATERING_ORDER_DETAIL" />
-            <marker date="1521184583764" expanded="true" signature="2214:2278" ph="UPDATE catering_order_detail... " />
-            <marker date="1521184583764" expanded="true" signature="2360:3195" ph="UPDATE catering_order_detail... " />
-            <marker date="1521184583764" expanded="true" signature="3312:3362" ph="SELECT * FRO... catering_order_detail" />
-            <marker date="1521184583764" expanded="true" signature="6270:6832" ph="select b.id goods_id" />
-            <marker date="1521184583764" expanded="true" signature="6337:6710" ph="select goods... catering_order_detail" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/target/classes/mapper/web/catering/CateringGoods.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-758">
-          <caret line="235" column="28" lean-forward="false" selection-start-line="235" selection-start-column="18" selection-end-line="235" selection-end-column="28" />
-          <folding>
-            <marker date="1521184583666" expanded="true" signature="2047:2850" ph="INSERT INTO CATERING_GOODS... " />
-            <marker date="1521184583666" expanded="true" signature="2923:2980" ph="SELECT LAST_... CATERING_GOODS" />
-            <marker date="1521184583666" expanded="true" signature="3096:3153" ph="UPDATE catering_goods... " />
-            <marker date="1521184583666" expanded="true" signature="3229:4668" ph="UPDATE catering_goods... " />
-            <marker date="1521184583666" expanded="true" signature="4773:4816" ph="SELECT * FRO... catering_goods" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/news/newsEdit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2368">
+        <state relative-caret-position="-3933">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -1419,261 +1105,145 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/news/newsList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2553">
+        <state relative-caret-position="-966">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/community/communityEdit.html">
+    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/user/model/Coupon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9506">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="575">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/region/model/Country.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-552">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/5.0.2/pagehelper-5.0.2.jar!/com/github/pagehelper/ISelect.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/community/controller/CommunityController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="55" column="42" lean-forward="false" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.8.RELEASE/spring-web-4.3.8.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/admin/region/Country.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="42" column="24" lean-forward="true" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+          <folding>
+            <marker date="1519811323103" expanded="true" signature="1410:1870" ph="INSERT INTO COUNTRY... " />
+            <marker date="1519811323103" expanded="true" signature="1943:1993" ph="SELECT LAST_... COUNTRY" />
+            <marker date="1519811323103" expanded="true" signature="2103:2153" ph="UPDATE country... " />
+            <marker date="1519811323103" expanded="true" signature="2223:3034" ph="UPDATE country... " />
+            <marker date="1519811323103" expanded="true" signature="3127:3163" ph="SELECT * FRO... country" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/region/service/CountryService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/community/communityList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="110" column="7" lean-forward="true" selection-start-line="103" selection-start-column="4" selection-end-line="110" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/news/babietaList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/community/community.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="35" column="17" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="35" selection-end-column="17" />
-          <folding>
-            <marker date="1519811329715" expanded="true" signature="11029:11042" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/controller/CateringGoodsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4577">
-          <caret line="79" column="13" lean-forward="true" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/community/controller/CommunityOrderController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-207">
-          <caret line="102" column="79" lean-forward="false" selection-start-line="102" selection-start-column="16" selection-end-line="102" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/common/enums/RequestResultEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1564">
-          <caret line="68" column="59" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="68" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/jquery-confirm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="15049" column="17" lean-forward="false" selection-start-line="15049" selection-start-column="17" selection-end-line="15049" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/common/enums/RequestResultEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="72" column="4" lean-forward="false" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringRestaurant.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2295">
-          <caret line="154" column="40" lean-forward="false" selection-start-line="154" selection-start-column="16" selection-end-line="154" selection-end-column="40" />
-          <folding>
-            <marker date="1519811321998" expanded="true" signature="3651:5224" ph="INSERT INTO CATERING_RESTAURANT... " />
-            <marker date="1519811321998" expanded="true" signature="5297:5359" ph="SELECT LAST_... CATERING_RESTAURANT" />
-            <marker date="1519811321998" expanded="true" signature="5480:5542" ph="UPDATE catering_restaurant... " />
-            <marker date="1519811321998" expanded="true" signature="5623:8573" ph="UPDATE catering_restaurant... " />
-            <marker date="1519811321998" expanded="true" signature="8688:8736" ph="SELECT * FRO... catering_restaurant" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/impl/CateringRestaurantServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="73" column="15" lean-forward="false" selection-start-line="73" selection-start-column="15" selection-end-line="73" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/common/controller/BaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringOrder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="95" column="59" lean-forward="false" selection-start-line="95" selection-start-column="56" selection-end-line="95" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/service/CateringOrderService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="99" column="12" lean-forward="false" selection-start-line="99" selection-start-column="12" selection-end-line="99" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/common/utils/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="26" column="57" lean-forward="false" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/common/utils/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="39" column="57" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="39" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/service/impl/CateringOrderServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="433" column="49" lean-forward="true" selection-start-line="433" selection-start-column="49" selection-end-line="433" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/controller/CateringOrderController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="405" column="101" lean-forward="false" selection-start-line="405" selection-start-column="101" selection-end-line="405" selection-end-column="101" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/utils/CateringConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="22" selection-end-column="53" />
+        <state relative-caret-position="368">
+          <caret line="31" column="34" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="31" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/utils/CateringConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="53" lean-forward="false" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+        <state relative-caret-position="129">
+          <caret line="18" column="31" lean-forward="false" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/controller/CateringRestaurantController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/frame.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="96" column="26" lean-forward="false" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/controller/CateringOrderController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="73" column="22" lean-forward="false" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringOrderList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="12" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="16" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringOrderEdit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        <state relative-caret-position="1196">
+          <caret line="52" column="31" lean-forward="true" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringRestaurantList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+        <state relative-caret-position="405">
+          <caret line="91" column="33" lean-forward="true" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringRestaurantReviewList.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringDiscount.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="53" column="62" lean-forward="false" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="62" />
-          <folding />
+        <state relative-caret-position="248">
+          <caret line="109" column="22" lean-forward="false" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="22" />
+          <folding>
+            <marker date="1522393328769" expanded="true" signature="1257:1641" ph="INSERT INTO CATERING_DISCOUNT... " />
+            <marker date="1522393328769" expanded="true" signature="1714:1774" ph="SELECT LAST_... CATERING_DISCOUNT" />
+            <marker date="1522393328769" expanded="true" signature="1893:1953" ph="UPDATE catering_discount... " />
+            <marker date="1522393328769" expanded="true" signature="2032:2673" ph="UPDATE catering_discount... " />
+            <marker date="1522393328769" expanded="true" signature="2784:2830" ph="SELECT * FRO... catering_discount" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringRestaurant.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/impl/CateringDiscountServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="113" column="32" lean-forward="false" selection-start-line="113" selection-start-column="19" selection-end-line="113" selection-end-column="32" />
+        <state relative-caret-position="-322">
+          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/model/CateringRestaurant.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/service/CateringDiscountService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1182">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="-1357">
+          <caret line="4" column="25" lean-forward="false" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/model/CateringOrder.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/mapper/CateringDiscountMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="99" column="42" lean-forward="false" selection-start-line="99" selection-start-column="42" selection-end-line="99" selection-end-column="42" />
+        <state relative-caret-position="-253">
+          <caret line="3" column="25" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/resources/mapper/web/catering/CateringRestaurant.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/exception/CateringDiscountException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1681,18 +1251,262 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../web/src/main/resources/spring/servlet-context.xml">
+    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/controller/CateringOrderController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="53" />
+        <state relative-caret-position="402">
+          <caret line="82" column="42" lean-forward="true" selection-start-line="82" selection-start-column="42" selection-end-line="82" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringDiscount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-759">
+          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/service/impl/CateringOrderServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-43">
+          <caret line="382" column="30" lean-forward="false" selection-start-line="382" selection-start-column="30" selection-end-line="382" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/model/CateringRestaurant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="132" column="7" lean-forward="true" selection-start-line="132" selection-start-column="4" selection-end-line="133" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringRestaurant.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1012">
+          <caret line="44" column="18" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
+          <folding>
+            <marker date="1522631534867" expanded="true" signature="3884:5543" ph="INSERT INTO CATERING_RESTAURANT... " />
+            <marker date="1522631534867" expanded="true" signature="5616:5678" ph="SELECT LAST_... CATERING_RESTAURANT" />
+            <marker date="1522631534867" expanded="true" signature="5799:5861" ph="UPDATE catering_restaurant... " />
+            <marker date="1522631534867" expanded="true" signature="5942:9055" ph="UPDATE catering_restaurant... " />
+            <marker date="1522631534867" expanded="true" signature="9170:9218" ph="SELECT * FRO... catering_restaurant" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringManager.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="28" column="72" lean-forward="false" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="72" />
+          <folding>
+            <marker date="1522631685718" expanded="true" signature="1857:2532" ph="INSERT INTO CATERING_MANAGER... " />
+            <marker date="1522631685718" expanded="true" signature="2605:2664" ph="SELECT LAST_... CATERING_MANAGER" />
+            <marker date="1522631685718" expanded="true" signature="2782:2841" ph="UPDATE catering_manager... " />
+            <marker date="1522631685718" expanded="true" signature="2919:4133" ph="UPDATE catering_manager... " />
+            <marker date="1522631685718" expanded="true" signature="4242:4287" ph="SELECT * FRO... catering_manager" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringGoods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringComment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringCommentImg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="19" column="75" lean-forward="false" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="75" />
+          <folding>
+            <marker date="1522631786613" expanded="true" signature="1203:1567" ph="INSERT INTO CATERING_COMMENT_IMG... " />
+            <marker date="1522631786613" expanded="true" signature="1640:1703" ph="SELECT LAST_... CATERING_COMMENT_IMG" />
+            <marker date="1522631786613" expanded="true" signature="1824:1887" ph="UPDATE catering_comment_img... " />
+            <marker date="1522631786613" expanded="true" signature="1968:2559" ph="UPDATE catering_comment_img... " />
+            <marker date="1522631786613" expanded="true" signature="2674:2723" ph="SELECT * FRO... catering_comment_img" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringCommentImg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringComment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="32" />
+          <folding>
+            <marker date="1522631703235" expanded="true" signature="1641:2164" ph="INSERT INTO CATERING_COMMENT... " />
+            <marker date="1522631703235" expanded="true" signature="2237:2296" ph="SELECT LAST_... CATERING_COMMENT" />
+            <marker date="1522631703235" expanded="true" signature="2414:2473" ph="UPDATE catering_comment... " />
+            <marker date="1522631703235" expanded="true" signature="2551:3451" ph="UPDATE catering_comment... " />
+            <marker date="1522631703235" expanded="true" signature="3560:3605" ph="SELECT * FRO... catering_comment" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/admin/catering/CateringGoods.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="633">
+          <caret line="30" column="70" lean-forward="false" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
+          <folding>
+            <marker date="1522631703256" expanded="true" signature="2053:2856" ph="INSERT INTO CATERING_GOODS... " />
+            <marker date="1522631703256" expanded="true" signature="2929:2986" ph="SELECT LAST_... CATERING_GOODS" />
+            <marker date="1522631703256" expanded="true" signature="3102:3159" ph="UPDATE catering_goods... " />
+            <marker date="1522631703256" expanded="true" signature="3235:4674" ph="UPDATE catering_goods... " />
+            <marker date="1522631703256" expanded="true" signature="4779:4822" ph="SELECT * FRO... catering_goods" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/dataSource.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="23" column="37" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringComment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1725">
+          <caret line="75" column="35" lean-forward="false" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../web/src/main/java/com/wemeCity/web/catering/controller/CateringRestaurantController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="137" column="55" lean-forward="false" selection-start-line="137" selection-start-column="40" selection-end-line="137" selection-end-column="55" />
+        <state relative-caret-position="1554">
+          <caret line="104" column="54" lean-forward="false" selection-start-line="104" selection-start-column="42" selection-end-line="104" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringRestaurantEdit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="44" column="32" lean-forward="true" selection-start-line="44" selection-start-column="32" selection-end-line="47" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringRestaurant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="83" column="15" lean-forward="false" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringRestaurantList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="82" column="61" lean-forward="false" selection-start-line="82" selection-start-column="61" selection-end-line="82" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringOrderList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="77" column="24" lean-forward="false" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="129" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/controller/CateringRestaurantController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="66" column="32" lean-forward="false" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="57" column="41" lean-forward="false" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringCourier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-207">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/controller/CateringOrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="91" column="31" lean-forward="false" selection-start-line="91" selection-start-column="31" selection-end-line="91" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wemeCity/admin/catering/model/CateringOrderDetail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="37" column="28" lean-forward="false" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mybatisGenerator/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/templates/catering/cateringOrderEdit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="80" column="79" lean-forward="false" selection-start-line="80" selection-start-column="68" selection-end-line="80" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1756,6 +1570,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

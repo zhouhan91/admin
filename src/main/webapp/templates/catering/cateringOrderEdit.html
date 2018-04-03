@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>编辑房源</title>
+	<title>订单信息</title>
 	<link th:href="@{/static/css/bootstrap.min-3.3.6.css}" rel="stylesheet" />
 	<link th:href="@{/static/css/footable.core.css}" rel="stylesheet" />
 	<link th:href="@{/static/css/animate.css}" rel="stylesheet" />
@@ -11,9 +11,11 @@
 	<link th:href="@{/static/css/bootstrap-datetimepicker.css}" rel="stylesheet" />
 	<link th:href="@{/static/css/toastr.min.css}" rel="stylesheet" />
 	<style type="text/css">
-		th,td{
+		th{
 			text-align: center;
+			width:100px;
 		}
+
 	</style>
 </head>
 <body class="gray-bg">
@@ -25,64 +27,108 @@
 					<h5>订单详情</h5>
 				</div>
 				<div class="ibox-content">
-					<div class="table-responsive">
+					<div class="table-responsive ">
 						<table class="footable table table-striped">
-							<thead>
-							<tr>
-								<th style="display: none" width="15%">订单ID</th>
-								<th width="5%">订单状态</th>
-								<th width="10%">用户地址</th>
-								<th width="10%">商家推荐地址</th>
-								<th width="10%">下单时间</th>
-								<th width="10%">配送菜品</th>
-								<th width="10%">配送人员</th>
-								<th width="10%">收货人信息</th>
-								<th width="5%">订单金额</th>
-								<th width="10%">支付状态</th>
-								<th width="10%">备注信息</th>
-								<th width="10%" th:if="(${cateringOrder.status} != 60 and ${cateringOrder.status} != 70 and ${cateringOrder.status} != 80)">操作</th>
-							</tr>
-							</thead>
 							<tbody>
-							<tr>
-								<td id="orderId" style="display: none" th:text="${cateringOrder.id }"></td>
-								<td th:switch="${cateringOrder.status }">
-									<span th:case="10">新建</span>
-									<span th:case="30">待确认</span>
-									<span th:case="50">待配送</span>
-									<span th:case="60">待结算</span>
-									<span th:case="70">已完成</span>
-									<span th:case="80">已取消</span>
-								</td>
-								<td th:text="${cateringOrder.address }"></td>
-								<td th:text="${cateringOrder.distributionLocation }"></td>
-								<td th:text="${cateringOrder.createTime }"></td>
-								<td>
-									<div th:each="detail:${cateringOrder.lstDetail}">
-										<p th:text="${detail.goodsName}+'x'+${detail.count}"></p>
-									</div>
-								</td>
-								<td>
-									<p th:text="${cateringOrder.courierName }"></p>
-									<p th:text="${cateringOrder.courierPhone }"></p>
-								</td>
-								<td>
-									<p th:text="${cateringOrder.name }"></p>
-									<p th:text="${cateringOrder.phone }"></p>
-								</td>
-								<td th:text="${cateringOrder.cashAmount }"></td>
-								<td th:switch="${cateringOrder.payStatus }">
-									<span th:case="1">未支付</span>
-									<span th:case="2">支付中</span>
-									<span th:case="3">已支付</span>
-									<span th:case="4">支付失败</span>
-								</td>
-								<td th:text="${cateringOrder.remark }"> </td>
-								<td th:if="(${cateringOrder.status} != 60 and ${cateringOrder.status} != 70 and ${cateringOrder.status} != 80)">
-									<button class="btn btn-primary" data-toggle="modal" data-target="#selectCourierModal">选择配送人员</button><br/>
-									<button class="btn btn-warning" data-toggle="modal" data-target="#cancelReasonModal">取消订单</button>
-								</td>
-							</tr>
+								<tr>
+									<td id="orderId" style="display: none" th:text="${cateringOrder.id }"></td>
+									<th>订单状态</th>
+									<td th:switch="${cateringOrder.status }">
+										<span th:case="10">新建</span>
+										<span th:case="30">待确认</span>
+										<span th:case="50">待配送</span>
+										<span th:case="60">待结算</span>
+										<span th:case="70">已完成</span>
+										<span th:case="80">已取消</span>
+									</td>
+									<th>店铺名称</th>
+									<td th:text="${restaurant.name}"></td>
+								</tr>
+								<tr>
+									<th>支付状态</th>
+									<td th:switch="${cateringOrder.payStatus }">
+										<span th:case="1">未支付</span>
+										<span th:case="2">支付中</span>
+										<span th:case="3">已支付</span>
+										<span th:case="4">支付失败</span>
+									</td>
+									<th>店铺地址</th>
+									<td th:text="${restaurant.address}"></td>
+								</tr>
+								<tr>
+									<th>收货地址</th>
+
+									<td th:text="${cateringOrder.address }==null?${cateringOrder.distributionLocation}:${cateringOrder.address}" ></td>
+									<th>店主电话</th>
+									<td th:text="${restaurant.managerPhone}"></td>
+								</tr>
+								<tr>
+									<th>收货人信息</th>
+									<td>
+										<p th:text="${cateringOrder.name }"></p>
+										<p th:text="${cateringOrder.phone }"></p>
+									</td>
+									<th>客服热线</th>
+									<td th:text="${restaurant.phone}"></td>
+								</tr>
+								<tr>
+									<th>下单时间</th>
+									<td th:text="${cateringOrder.createTime }"></td>
+								</tr>
+								<tr>
+									<th>配送人员</th>
+									<td>
+										<p th:text="${cateringOrder.courierName }">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										<p th:text="${cateringOrder.courierPhone }"></p>
+									</td>
+								</tr>
+								<tr>
+									<th>配送菜品</th>
+									<td>
+										<div th:each="detail:${cateringOrder.lstDetail}">
+											<p th:text="${detail.goodsName}+'&nbsp;&nbsp;'+'€'+${detail.price}+'&nbsp;&nbsp;'+${detail.count}+'份'"></p>
+										</div>
+									</td>
+								</tr>
+								<tr th:if="${cateringOrder.status}=='80'">
+									<th>商家取消原因</th>
+									<td th:text="${cateringOrder.cancelReason}"></td>
+								</tr>
+								<tr>
+									<th>用户下单备注</th>
+									<td th:text="${cateringOrder.remark}"></td>
+								</tr>
+								<tr>
+									<th>小计金额</th>
+									<td th:text="${cateringOrder.price }"></td>
+								</tr>
+								<tr>
+									<th>配送费</th>
+									<td th:text="${cateringOrder.distributionAmount }"></td>
+								</tr>
+								<tr>
+									<th>店铺优惠</th>
+									<td th:text="${cateringOrder.couponName }"></td>
+								</tr>
+								<tr>
+									<th>平台红包</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>实际收入</th>
+									<td th:text="${cateringOrder.cashAmount }"></td>
+								</tr>
+								<tr>
+									<th>平台佣金</th>
+									<td></td>
+								</tr>
+								<tr th:if="(${cateringOrder.status} == 30 or ${cateringOrder.status} == 50)">
+									<th>操作</th>
+									<td>
+										<button class="btn btn-primary" data-toggle="modal" data-target="#selectCourierModal">选择配送人员</button><br/>
+										<button class="btn btn-warning" data-toggle="modal" data-target="#cancelReasonModal">取消订单</button>
+									</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.wemeCity.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -53,10 +54,14 @@ public class CommunityController extends BaseController {
 
 	@GetMapping("/list/{pageNum}")
 	public String list(Community community, @PathVariable int pageNum, ModelMap modelMap) throws Exception {
-		logger.debug("Community list params: community={}, pageNum={}", GsonUtils.toSimpleJson(community), pageNum);
+ 		logger.debug("Community list params: community={}, pageNum={}", GsonUtils.toSimpleJson(community), pageNum);
 		Map<String, Object> condition = new HashMap<>();
+		if(!StringUtils.isEmpty(community.getName())){
+			condition.put("name",community.getName());
+		}
 		condition.put("isDeleted", Constants.NO);
 		Page<Community> page = PageHelper.startPage(pageNum, Constants.DEFAULT_PAGE_SIZE).doSelectPage(() -> communityService.queryCommunityList(condition));
+		modelMap.put("name",community.getName());
 		modelMap.put("page", page);
 		// 获取国家
 		modelMap.put("lstCountry", countryService.queryAllCountryList());

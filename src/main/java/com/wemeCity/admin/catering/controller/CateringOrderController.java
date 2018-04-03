@@ -2,14 +2,15 @@ package com.wemeCity.admin.catering.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.wemeCity.admin.catering.dto.CateringOrderDTO;
 import com.wemeCity.admin.catering.exception.CateringOrderException;
 import com.wemeCity.admin.catering.model.CateringCourier;
 import com.wemeCity.admin.catering.model.CateringOrder;
 import com.wemeCity.admin.catering.model.CateringOrderDetail;
+import com.wemeCity.admin.catering.model.CateringRestaurant;
 import com.wemeCity.admin.catering.service.CateringCourierService;
 import com.wemeCity.admin.catering.service.CateringOrderDetailService;
 import com.wemeCity.admin.catering.service.CateringOrderService;
+import com.wemeCity.admin.catering.service.CateringRestaurantService;
 import com.wemeCity.admin.catering.utils.CateringConstants;
 import com.wemeCity.admin.sysUser.model.SysUser;
 import com.wemeCity.common.controller.BaseController;
@@ -17,17 +18,12 @@ import com.wemeCity.common.dto.BaseDTO;
 import com.wemeCity.common.enums.RequestResultEnum;
 import com.wemeCity.common.utils.Constants;
 import com.wemeCity.common.utils.StringUtils;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.lang.reflect.Field;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
@@ -47,6 +43,9 @@ public class CateringOrderController extends BaseController{
 
 	@Autowired
 	private CateringCourierService cateringCourierService;
+
+	@Autowired
+	private CateringRestaurantService cateringRestaurantService;
 
 	@GetMapping("/list/{pageNum}")
 	public String list(String dateStart, String dateEnd, String code, String phone, String restaurantName,
@@ -94,11 +93,14 @@ public class CateringOrderController extends BaseController{
 			order.setLstDetail(lstDetail);
 
 			Map<String,Object> condition2 = new HashMap<>();
-			condition2.put("restaurantId",order.getRestaurantId());
+			long restaurantId = order.getRestaurantId();
+			condition2.put("restaurantId",restaurantId);
 			List<CateringCourier> courierList = cateringCourierService.queryCateringCourierList(condition2);
+			CateringRestaurant restaurant = cateringRestaurantService.readCateringRestaurant(restaurantId);
 			modelMap.put("courierList",courierList);
 			modelMap.put("cateringOrder",order);
-		} catch (CateringOrderException e) {
+			modelMap.put("restaurant",restaurant);
+		} catch (Exception e) {
 			logger.error("获取订单失败，服务器内部错误！id={}",id);
 			e.printStackTrace();
 		}

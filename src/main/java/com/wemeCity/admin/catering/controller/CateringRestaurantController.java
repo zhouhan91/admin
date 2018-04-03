@@ -3,13 +3,18 @@ package com.wemeCity.admin.catering.controller;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.wemeCity.admin.catering.model.CateringDiscount;
+import com.wemeCity.admin.catering.service.CateringDiscountService;
 import com.wemeCity.admin.catering.utils.CateringConstants;
+import com.wemeCity.admin.region.service.CountryService;
 import com.wemeCity.admin.sysUser.model.SysUser;
 import com.wemeCity.common.controller.BaseController;
 import com.wemeCity.common.dto.BaseDTO;
 import com.wemeCity.common.enums.RequestResultEnum;
+import com.wemeCity.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,25 +39,33 @@ public class CateringRestaurantController extends BaseController{
 	@Autowired
 	private CateringRestaurantService cateringRestaurantService;
 
-	@GetMapping("/list/{pageNum}")
-	public String list(@PathVariable int pageNum, String name, String status, ModelMap modelMap) {
-		Map<String, Object> condition = new HashMap<>();
-		ConditionUtils.addStr(condition, "nameLike", name);
-		ConditionUtils.addStr(condition, "status", status);
-		Page<CateringRestaurant> page = PageHelper.startPage(pageNum, Constants.DEFAULT_PAGE_SIZE).doSelectPage(() -> cateringRestaurantService.queryCateringRestaurantList(condition));
-		modelMap.put("page", page);
-		return "catering/cateringRestaurantList";
-	}
+	@Autowired
+	private CountryService countryService;
 
-	@GetMapping("/reviewList/{pageNum}")
-	public String reviewList(@PathVariable int pageNum, ModelMap modelMap) {
+	@Autowired
+	private CateringDiscountService cateringDiscountService;
+
+	@GetMapping("/list/{pageNum}")
+	public String list(@PathVariable int pageNum, String name,String phone,String status, String countryCode,ModelMap modelMap) {
 		Map<String, Object> condition = new HashMap<>();
-		ConditionUtils.addStr(condition, "status", CateringConstants.RESTAURANT_STATUS_NEW);
+		if(!StringUtils.isEmpty(name))
+			ConditionUtils.addStr(condition, "name", name);
+		if(!StringUtils.isEmpty(phone))
+			ConditionUtils.addStr(condition, "phone", phone);
+		if(!StringUtils.isEmpty(status))
+			ConditionUtils.addStr(condition, "status", status);
+		if(!StringUtils.isEmpty(countryCode))
+			ConditionUtils.addStr(condition, "countryCode", countryCode);
 		ConditionUtils.addStr(condition, "isDeleted", Constants.NO);
 		ConditionUtils.addStr(condition, "sortColumn", "create_time");
 		Page<CateringRestaurant> page = PageHelper.startPage(pageNum, Constants.DEFAULT_PAGE_SIZE).doSelectPage(() -> cateringRestaurantService.queryCateringRestaurantList(condition));
 		modelMap.put("page", page);
-		return "catering/cateringRestaurantReviewList";
+		modelMap.put("status",status);
+		modelMap.put("name",name);
+		modelMap.put("phone",phone);
+		modelMap.put("countryCode",countryCode);
+		modelMap.put("lstCountry", countryService.queryAllCountryList());
+		return "catering/cateringRestaurantList";
 	}
 
 	@ResponseBody
@@ -109,5 +122,24 @@ public class CateringRestaurantController extends BaseController{
 			return new BaseDTO(RequestResultEnum.FAILURE,null);
 		}
 		return new BaseDTO(RequestResultEnum.SUCCESS,null);
+	}
+
+	@GetMapping("/initUpdate")
+	public String initUpdate(Long id, ModelMap modelMap) {
+		logger.debug("CateringOrder params: id={}");
+		try {
+			CateringRestaurant restaurant=cateringRestaurantService.readCateringRestaurant(id);
+			Map<String,Object> condition = new HashMap<>();
+			condition.put("restaurantId",id);
+			condition.put("isDeleted",Constants.NO);
+			condition.put("sortColumn","target");
+			List<CateringDiscount> discountList = cateringDiscountService.queryCateringDiscountList(condition);
+			modelMap.put("discountList",discountList);
+			modelMap.put("restaurant",restaurant);
+		} catch (Exception e) {
+			logger.error("获取商家信息失败，服务器内部错误！id={}",id);
+			e.printStackTrace();
+		}
+		return "catering/cateringRestaurantEdit";
 	}
 }

@@ -1,17 +1,18 @@
-
 package com.wemeCity.admin.catering.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.List;
 
 /**
  * CateringRestaurant实体类
  *
  * @author 向小文
  * @since JDK1.8
- * @history 2018-2-4 新建
+ * @history 2017-12-8 新建
  */
 public class CateringRestaurant {
 	/** (id,BIGINT(20),not null)自增主键 */
@@ -86,10 +87,10 @@ public class CateringRestaurant {
 	/** (distribution_amount,DECIMAL(15,4), null)配送费 */
 	private BigDecimal distributionAmount;
 
-	/** (longitude,DOUBLE, null)经度 */
+	/** (longitude,FLOAT, null)经度 */
 	private double longitude;
 
-	/** (latitude,DOUBLE, null)纬度 */
+	/** (latitude,FLOAT, null)纬度 */
 	private double latitude;
 
 	/** (interest_level,FLOAT, null)关注度：5分制 */
@@ -116,14 +117,20 @@ public class CateringRestaurant {
 	/** (recommend_sort_num,INT(11), null)推荐排序(升序) */
 	private int recommendSortNum;
 
+	/** (distribution_remark,VARCHAR(500), null)配送说明 */
+	private String distributionRemark;
+
 	/** (sort_num,INT(11), null)分类排序(升序) */
 	private int sortNum;
 
-	/** (status,VARCHAR(8), null)状态(10；未通过，20：已通过，100：已关闭) */
+	/** (status,VARCHAR(1), null)状态(10；未通过，20：已通过，100：已关闭) */
 	private String status;
 
 	/** (open_flag,VARCHAR(1), null)开放(Y：开放店铺，N：关闭店铺) 店铺自己控制 */
 	private String openFlag;
+	
+	/** (pause_flag,VARCHAR(1), null)暂停接单(Y：接单，N：暂停接单) 店铺自己控制 */
+	private String pauseFlag;
 
 	/** (is_deleted,VARCHAR(1), null)是否已删除(Y/N) */
 	private String isDeleted;
@@ -144,340 +151,411 @@ public class CateringRestaurant {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime modifyTime;
 
-	public void setId(long id){
-		this.id=id;
+	/** 店铺所有者信息 */
+	private CateringManager manager;
+
+	/** 折扣信息 */
+	private List<CateringDiscount> lstCateringDiscount;
+
+	/** 商品信息 */
+	private List<CateringGoods> lstCateringGoods;
+
+	/** 评论信息 */
+	private List<CateringComment> lstComment;
+
+	/** 距离 */
+	private double distance;
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public long getId(){
+	public long getId() {
 		return this.id;
 	}
 
-	public void setManagerId(long managerId){
-		this.managerId=managerId;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public long getManagerId(){
-		return this.managerId;
-	}
-
-	public void setName(String name){
-		this.name=name;
-	}
-
-	public String getName(){
+	public String getName() {
 		return this.name;
 	}
 
-	public void setLocalName(String localName){
-		this.localName=localName;
+	public void setLocalName(String localName) {
+		this.localName = localName;
 	}
 
-	public String getLocalName(){
+	public String getLocalName() {
 		return this.localName;
 	}
 
-	public void setParentCategoryId(long parentCategoryId){
-		this.parentCategoryId=parentCategoryId;
+	public void setParentCategoryId(long parentCategoryId) {
+		this.parentCategoryId = parentCategoryId;
 	}
 
-	public long getParentCategoryId(){
+	public long getParentCategoryId() {
 		return this.parentCategoryId;
 	}
 
-	public void setParentCategoryCode(String parentCategoryCode){
-		this.parentCategoryCode=parentCategoryCode;
+	public void setParentCategoryCode(String parentCategoryCode) {
+		this.parentCategoryCode = parentCategoryCode;
 	}
 
-	public String getParentCategoryCode(){
+	public String getParentCategoryCode() {
 		return this.parentCategoryCode;
 	}
 
-	public void setCategoryId(long categoryId){
-		this.categoryId=categoryId;
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
 	}
 
-	public long getCategoryId(){
+	public long getCategoryId() {
 		return this.categoryId;
 	}
 
-	public void setCategoryCode(String categoryCode){
-		this.categoryCode=categoryCode;
+	public void setCategoryCode(String categoryCode) {
+		this.categoryCode = categoryCode;
 	}
 
-	public String getCategoryCode(){
+	public String getCategoryCode() {
 		return this.categoryCode;
 	}
 
-	public void setCoverPicture(String coverPicture){
-		this.coverPicture=coverPicture;
+	public void setCoverPicture(String coverPicture) {
+		this.coverPicture = coverPicture;
 	}
 
-	public String getCoverPicture(){
+	public String getCoverPicture() {
 		return this.coverPicture;
 	}
 
-	public void setCountryCode(String countryCode){
-		this.countryCode=countryCode;
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 
-	public String getCountryCode(){
+	public String getCountryCode() {
 		return this.countryCode;
 	}
 
-	public void setCountryName(String countryName){
-		this.countryName=countryName;
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 
-	public String getCountryName(){
+	public String getCountryName() {
 		return this.countryName;
 	}
 
-	public void setCityCode(String cityCode){
-		this.cityCode=cityCode;
+	public void setCityCode(String cityCode) {
+		this.cityCode = cityCode;
 	}
 
-	public String getCityCode(){
+	public String getCityCode() {
 		return this.cityCode;
 	}
 
-	public void setCityName(String cityName){
-		this.cityName=cityName;
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 
-	public String getCityName(){
+	public String getCityName() {
 		return this.cityName;
 	}
 
-	public void setDistrictCode(String districtCode){
-		this.districtCode=districtCode;
+	public void setDistrictCode(String districtCode) {
+		this.districtCode = districtCode;
 	}
 
-	public String getDistrictCode(){
+	public String getDistrictCode() {
 		return this.districtCode;
 	}
 
-	public void setDistrictName(String districtName){
-		this.districtName=districtName;
+	public void setDistrictName(String districtName) {
+		this.districtName = districtName;
 	}
 
-	public String getDistrictName(){
+	public String getDistrictName() {
 		return this.districtName;
 	}
 
-	public void setAddress(String address){
-		this.address=address;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getAddress(){
+	public String getAddress() {
 		return this.address;
 	}
 
-	public void setManagerPhone(String managerPhone){
-		this.managerPhone=managerPhone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public String getManagerPhone(){
-		return this.managerPhone;
-	}
-
-	public void setPhone(String phone){
-		this.phone=phone;
-	}
-
-	public String getPhone(){
+	public String getPhone() {
 		return this.phone;
 	}
 
-	public void setEmail(String email){
-		this.email=email;
+	public void setNotice(String notice) {
+		this.notice = notice;
 	}
 
-	public String getEmail(){
-		return this.email;
-	}
-
-	public void setNotice(String notice){
-		this.notice=notice;
-	}
-
-	public String getNotice(){
+	public String getNotice() {
 		return this.notice;
 	}
 
-	public void setServiceTimeCode(String serviceTimeCode){
-		this.serviceTimeCode=serviceTimeCode;
+	public void setServiceTimeCode(String serviceTimeCode) {
+		this.serviceTimeCode = serviceTimeCode;
 	}
 
-	public String getServiceTimeCode(){
+	public String getServiceTimeCode() {
 		return this.serviceTimeCode;
 	}
 
-	public void setServiceTimeDesc(String serviceTimeDesc){
-		this.serviceTimeDesc=serviceTimeDesc;
+	public void setServiceTimeDesc(String serviceTimeDesc) {
+		this.serviceTimeDesc = serviceTimeDesc;
 	}
 
-	public String getServiceTimeDesc(){
+	public String getServiceTimeDesc() {
 		return this.serviceTimeDesc;
 	}
 
-	public void setAmountLimit(BigDecimal amountLimit){
-		this.amountLimit=amountLimit;
+	public void setAmountLimit(BigDecimal amountLimit) {
+		this.amountLimit = amountLimit;
 	}
 
-	public BigDecimal getAmountLimit(){
+	public BigDecimal getAmountLimit() {
 		return this.amountLimit;
 	}
 
-	public void setDistributionAmount(BigDecimal distributionAmount){
-		this.distributionAmount=distributionAmount;
+	public BigDecimal getDistributionAmount() {
+		return distributionAmount;
 	}
 
-	public BigDecimal getDistributionAmount(){
-		return this.distributionAmount;
+	public void setDistributionAmount(BigDecimal distributionAmount) {
+		this.distributionAmount = distributionAmount;
 	}
 
-	public void setLongitude(double longitude){
-		this.longitude=longitude;
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
-	public double getLongitude(){
+	public double getLongitude() {
 		return this.longitude;
 	}
 
-	public void setLatitude(double latitude){
-		this.latitude=latitude;
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
-	public double getLatitude(){
+	public double getLatitude() {
 		return this.latitude;
 	}
 
-	public void setInterestLevel(float interestLevel){
-		this.interestLevel=interestLevel;
+	public void setInterestLevel(float interestLevel) {
+		this.interestLevel = interestLevel;
 	}
 
-	public float getInterestLevel(){
+	public float getInterestLevel() {
 		return this.interestLevel;
 	}
 
-	public void setTasteLevel(float tasteLevel){
-		this.tasteLevel=tasteLevel;
+	public void setTasteLevel(float tasteLevel) {
+		this.tasteLevel = tasteLevel;
 	}
 
-	public float getTasteLevel(){
+	public float getTasteLevel() {
 		return this.tasteLevel;
 	}
 
-	public void setEnvironmentLevel(float environmentLevel){
-		this.environmentLevel=environmentLevel;
+	public void setEnvironmentLevel(float environmentLevel) {
+		this.environmentLevel = environmentLevel;
 	}
 
-	public float getEnvironmentLevel(){
+	public float getEnvironmentLevel() {
 		return this.environmentLevel;
 	}
 
-	public void setServiceLevel(float serviceLevel){
-		this.serviceLevel=serviceLevel;
+	public void setServiceLevel(float serviceLevel) {
+		this.serviceLevel = serviceLevel;
 	}
 
-	public float getServiceLevel(){
+	public float getServiceLevel() {
 		return this.serviceLevel;
 	}
 
-	public void setLikeCount(int likeCount){
-		this.likeCount=likeCount;
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
 	}
 
-	public int getLikeCount(){
+	public int getLikeCount() {
 		return this.likeCount;
 	}
 
-	public void setKeyWords(String keyWords){
-		this.keyWords=keyWords;
+	public void setKeyWords(String keyWords) {
+		this.keyWords = keyWords;
 	}
 
-	public String getKeyWords(){
+	public String getKeyWords() {
 		return this.keyWords;
 	}
 
-	public void setRecommendFlag(String recommendFlag){
-		this.recommendFlag=recommendFlag;
+	public void setRecommendFlag(String recommendFlag) {
+		this.recommendFlag = recommendFlag;
 	}
 
-	public String getRecommendFlag(){
+	public String getRecommendFlag() {
 		return this.recommendFlag;
 	}
 
-	public void setRecommendSortNum(int recommendSortNum){
-		this.recommendSortNum=recommendSortNum;
+	public void setRecommendSortNum(int recommendSortNum) {
+		this.recommendSortNum = recommendSortNum;
 	}
 
-	public int getRecommendSortNum(){
+	public int getRecommendSortNum() {
 		return this.recommendSortNum;
 	}
 
-	public void setSortNum(int sortNum){
-		this.sortNum=sortNum;
+	public void setSortNum(int sortNum) {
+		this.sortNum = sortNum;
 	}
 
-	public int getSortNum(){
+	public int getSortNum() {
 		return this.sortNum;
 	}
 
-	public void setStatus(String status){
-		this.status=status;
+	public String getDistributionRemark() {
+		return distributionRemark;
 	}
 
-	public String getStatus(){
+	public void setDistributionRemark(String distributionRemark) {
+		this.distributionRemark = distributionRemark;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatus() {
 		return this.status;
 	}
 
-	public void setOpenFlag(String openFlag){
-		this.openFlag=openFlag;
+	public void setOpenFlag(String openFlag) {
+		this.openFlag = openFlag;
 	}
 
-	public String getOpenFlag(){
+	public String getOpenFlag() {
 		return this.openFlag;
 	}
 
-	public void setIsDeleted(String isDeleted){
-		this.isDeleted=isDeleted;
+	public void setIsDeleted(String isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
-	public String getIsDeleted(){
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setCreateBy(long createBy){
-		this.createBy=createBy;
+	public void setCreateBy(long createBy) {
+		this.createBy = createBy;
 	}
 
-	public long getCreateBy(){
+	public long getCreateBy() {
 		return this.createBy;
 	}
 
-	public void setCreateTime(LocalDateTime createTime){
-		this.createTime=createTime;
+	public void setCreateTime(LocalDateTime createTime) {
+		this.createTime = createTime;
 	}
 
-	public LocalDateTime getCreateTime(){
+	public LocalDateTime getCreateTime() {
 		return this.createTime;
 	}
 
-	public void setModifyBy(long modifyBy){
-		this.modifyBy=modifyBy;
+	public void setModifyBy(long modifyBy) {
+		this.modifyBy = modifyBy;
 	}
 
-	public long getModifyBy(){
+	public long getModifyBy() {
 		return this.modifyBy;
 	}
 
-	public void setModifyTime(LocalDateTime modifyTime){
-		this.modifyTime=modifyTime;
+	public void setModifyTime(LocalDateTime modifyTime) {
+		this.modifyTime = modifyTime;
 	}
 
-	public LocalDateTime getModifyTime(){
+	public LocalDateTime getModifyTime() {
 		return this.modifyTime;
+	}
+
+	public List<CateringDiscount> getLstCateringDiscount() {
+		return lstCateringDiscount;
+	}
+
+	public void setLstCateringDiscount(List<CateringDiscount> lstCateringDiscount) {
+		this.lstCateringDiscount = lstCateringDiscount;
+	}
+
+	public List<CateringGoods> getLstCateringGoods() {
+		return lstCateringGoods;
+	}
+
+	public void setLstCateringGoods(List<CateringGoods> lstCateringGoods) {
+		this.lstCateringGoods = lstCateringGoods;
+	}
+
+	public List<CateringComment> getLstComment() {
+		return lstComment;
+	}
+
+	public void setLstComment(List<CateringComment> lstComment) {
+		this.lstComment = lstComment;
+	}
+
+	public long getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(long managerId) {
+		this.managerId = managerId;
+	}
+
+	public String getManagerPhone() {
+		return managerPhone;
+	}
+
+	public void setManagerPhone(String managerPhone) {
+		this.managerPhone = managerPhone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public CateringManager getManager() {
+		return manager;
+	}
+
+	public void setManager(CateringManager manager) {
+		this.manager = manager;
+	}
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	public String getPauseFlag() {
+		return pauseFlag;
+	}
+
+	public void setPauseFlag(String pauseFlag) {
+		this.pauseFlag = pauseFlag;
 	}
 
 }

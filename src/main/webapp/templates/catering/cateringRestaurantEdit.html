@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>订单信息</title>
+	<title>商家信息</title>
 	<link th:href="@{/static/css/bootstrap.min-3.3.6.css}" rel="stylesheet" />
 	<link th:href="@{/static/css/footable.core.css}" rel="stylesheet" />
 	<link th:href="@{/static/css/animate.css}" rel="stylesheet" />
@@ -15,6 +15,9 @@
 			text-align: center;
 			width:100px;
 		}
+		ul li{
+			list-style: none;
+		}
 
 	</style>
 </head>
@@ -24,110 +27,105 @@
 		<div class="col-sm-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>订单详情</h5>
+					<h5>商家管理详情</h5>
 				</div>
 				<div class="ibox-content">
 					<div class="table-responsive ">
 						<table class="footable table table-striped">
 							<tbody>
 								<tr>
-									<td id="orderId" style="display: none" th:text="${cateringOrder.id }"></td>
-									<th>订单状态</th>
-									<td th:switch="${cateringOrder.status }">
-										<span th:case="10">新建</span>
-										<span th:case="30">待确认</span>
-										<span th:case="50">待配送</span>
-										<span th:case="60">待结算</span>
-										<span th:case="70">已完成</span>
-										<span th:case="80">已取消</span>
-									</td>
-									<th>店铺名称</th>
+									<td id="restaurantId" style="display: none" th:text="${restaurant.id }"></td>
+									<th>商户名称</th>
 									<td th:text="${restaurant.name}"></td>
 								</tr>
 								<tr>
-									<th>支付状态</th>
-									<td th:switch="${cateringOrder.payStatus }">
-										<span th:case="1">未支付</span>
-										<span th:case="2">支付中</span>
-										<span th:case="3">已支付</span>
-										<span th:case="4">支付失败</span>
-									</td>
-									<th>店铺地址</th>
+									<th>商户地址</th>
 									<td th:text="${restaurant.address}"></td>
 								</tr>
 								<tr>
-									<th>收货地址</th>
-
-									<td th:text="${cateringOrder.address }==null?${cateringOrder.distributionLocation}:${cateringOrder.address}" ></td>
+									<th>商铺公告</th>
+									<td th:text="${restaurant.notice}"></td>
+								</tr>
+								<tr>
+									<th>店铺优惠</th>
+									<td>
+										<div th:each="discount:${discountList}">
+											<ul th:if="${discount.status}=='Y'" th:switch="${discount.type}">
+												<li th:case="manjian" th:text="'满'+${#numbers.formatDecimal(discount.target,1,2)}+'减'+${#numbers.formatDecimal(discount.discount,1,2)}"></li>
+												<li th:case="quanchangzhekou" th:text="'全场'+((#numbers.formatDecimal(discount.discount,1,2))*10)+'折'"></li>
+												<li th:case="xinren" th:text="'新人立减'+${#numbers.formatDecimal(discount.discount,1,2)}"></li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>商户类型</th>
+									<td th:switch="${restaurant.parentCategoryCode}">
+										<p th:case="canyin" th:text="餐饮"></p>
+										<p th:case="yinliaotianpin" th:text="饮料甜品"></p>
+										<p th:case="shangchaobianli" th:text="商超便利"></p>
+									</td>
+								</tr>
+								<tr>
+									<th>餐饮类型</th>
+									<td th:switch="${restaurant.categoryCode}">
+										<p th:case="qunaerchi" th:text="去哪儿吃"></p>
+										<p th:case="difangtese" th:text="地方特色"></p>
+										<p th:case="jiaxiangweidao" th:text="家乡味道"></p>
+										<p th:case="malahuanxi" th:text="麻辣欢喜"></p>
+										<p th:case="tianpin" th:text="甜品"></p>
+										<p th:case="chaoshi" th:text="超市"></p>
+									</td>
+								</tr>
+								<tr>
+									<th>营业时间</th>
+									<td th:text="${restaurant.serviceTimeDesc}"></td>
+								</tr>
+								<tr>
 									<th>店主电话</th>
 									<td th:text="${restaurant.managerPhone}"></td>
 								</tr>
 								<tr>
-									<th>收货人信息</th>
-									<td>
-										<p th:text="${cateringOrder.name }"></p>
-										<p th:text="${cateringOrder.phone }"></p>
-									</td>
 									<th>客服热线</th>
 									<td th:text="${restaurant.phone}"></td>
 								</tr>
 								<tr>
-									<th>下单时间</th>
-									<td th:text="${cateringOrder.createTime }"></td>
+									<th>E-mail</th>
+									<td th:text="${restaurant.email}"></td>
 								</tr>
 								<tr>
-									<th>配送人员</th>
-									<td>
-										<p th:text="${cateringOrder.courierName }">&nbsp;&nbsp;&nbsp;&nbsp;</p>
-										<p th:text="${cateringOrder.courierPhone }"></p>
+									<th>国家</th>
+									<td th:text="${restaurant.countryName}"></td>
+								</tr>
+								<tr>
+									<th>城市</th>
+									<td th:text="${restaurant.cityName}"></td>
+								</tr>
+								<tr>
+									<th>区县</th>
+									<td th:text="${restaurant.districtName}"></td>
+								</tr>
+								<tr>
+									<th>是否接单</th>
+									<td th:switch="${restaurant.pauseFlag}">
+										<p th:case="Y" th:text="是"></p>
+										<p th:case="N" th:text="否"></p>
 									</td>
 								</tr>
 								<tr>
-									<th>配送菜品</th>
-									<td>
-										<div th:each="detail:${cateringOrder.lstDetail}">
-											<p th:text="${detail.goodsName}+'&nbsp;&nbsp;'+'€'+${detail.price}+'&nbsp;&nbsp;'+${detail.count}+'份'"></p>
-										</div>
+									<th>商户开关</th>
+									<td th:switch="${restaurant.openFlag}">
+										<p th:case="Y" th:text="已开店"></p>
+										<p th:case="N" th:text="未开店"></p>
 									</td>
 								</tr>
-								<tr th:if="${cateringOrder.status}=='80'">
-									<th>商家取消原因</th>
-									<td th:text="${cateringOrder.cancelReason}"></td>
-								</tr>
 								<tr>
-									<th>用户下单备注</th>
-									<td th:text="${cateringOrder.remark}"></td>
-								</tr>
-								<tr>
-									<th>小计金额</th>
-									<td th:text="${cateringOrder.price }"></td>
-								</tr>
-								<tr>
-									<th>配送费</th>
-									<td th:text="${cateringOrder.distributionAmount }"></td>
-								</tr>
-								<tr>
-									<th>店铺优惠</th>
-									<td th:text="${cateringOrder.couponName }"></td>
-								</tr>
-								<tr>
-									<th>平台红包</th>
+									<th>店铺佣金</th>
 									<td></td>
 								</tr>
 								<tr>
-									<th>实际收入</th>
-									<td th:text="${cateringOrder.cashAmount }"></td>
-								</tr>
-								<tr>
-									<th>平台佣金</th>
+									<th>佣金变更记录</th>
 									<td></td>
-								</tr>
-								<tr th:if="(${cateringOrder.status} == 30 or ${cateringOrder.status} == 50)">
-									<th>操作</th>
-									<td>
-										<button class="btn btn-primary" data-toggle="modal" data-target="#selectCourierModal">选择配送人员</button><br/>
-										<button class="btn btn-warning" data-toggle="modal" data-target="#cancelReasonModal">取消订单</button>
-									</td>
 								</tr>
 							</tbody>
 						</table>

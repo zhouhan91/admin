@@ -32,9 +32,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="communityNameQuery" class="sr-only" style="width:auto !important;height:100% !important; display:initial;position:inherit;padding:0;margin-left:5px;">房源名称：</label>
-                                <input id="communityNameQuery" type="text" placeholder="输入社区名称查找" class="form-control w_duan" >
+                                <input id="communityNameQuery" type="text" placeholder="输入社区名称查找" class="form-control w_duan" th:value="${name}" >
                             </div>
-                            <button class="btn btn-white" type="button" style="margin-bottom:2px;" onclick="">查找</button>
+                            <button class="btn btn-white" type="button" style="margin-bottom:2px;" onclick="query(1)">查找</button>
                         </div>
 						<button type="button" class="btn btn-primary" style="float:right;margin-right:10px;" onclick="deleteCommunity();">删除</button>
 						<a th:href="@{/community/initInsert}">
@@ -113,7 +113,7 @@ $().ready(function(){
 });
            
 function query(page){
-	location.href="[[@{/community/list/}]]"+page+"?name="+$("#communityNameQuery").val();
+	location.href="[[@{/community/list/}]]"+page+"?name="+$.trim($("#communityNameQuery").val());
 }
 
 /*]]>*/
